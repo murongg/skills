@@ -11,6 +11,11 @@ It keeps the default workflow light:
 - direct execution for simple tasks
 - escalation only for ambiguity, risk, or debugging-heavy work
 
+It is opinionated about judgment quality:
+- clear, well-scoped bugs should usually be fixed directly
+- unclear bugs should be investigated before patching
+- completion claims require fresh evidence
+
 Phase 1 includes:
 - `use-my-skills`
 - `triage`
@@ -123,11 +128,11 @@ If a platform reports duplicate skill warnings, that usually means the same `my-
 Typical flows:
 
 - Small bugfix:
-  `use-my-skills -> triage -> tdd -> verify`
+  `use-my-skills -> triage -> tdd -> execute -> verify`
 - Debugging a failure:
-  `use-my-skills -> triage -> debug -> tdd -> verify`
+  `use-my-skills -> triage -> debug -> tdd -> execute -> verify`
 - Ambiguous feature work:
-  `use-my-skills -> triage -> brainstorm -> plan -> review -> verify`
+  `use-my-skills -> triage -> brainstorm -> plan -> execute -> review -> verify`
 
 Bug handling rule:
 
@@ -166,5 +171,5 @@ Use `frontend-specialist` when React, Next.js, or broader frontend work needs de
 ## Current Status
 
 - Phase 1 is implemented: `use-my-skills`, `triage`, `tdd`, `debug`, `verify`
-- Phase 2 is implemented: `brainstorm`, `plan`, `review`
+- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`
 - Phase 3 is still open: `workspace`, richer platform docs, and broader testing

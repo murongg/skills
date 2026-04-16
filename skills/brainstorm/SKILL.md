@@ -23,6 +23,31 @@ Use this skill when the task is too ambiguous for direct execution.
 4. Recommend one approach with a short reason.
 5. Only escalate into a written spec if the task is large enough to benefit from one.
 
+## Scope discipline
+
+Do not drag small clear tasks into brainstorming.
+
+This skill is for:
+- unclear scope
+- real trade-offs
+- meaningful design choices
+
+This skill is not for:
+- obvious bugfixes
+- tiny edits
+- tasks where the next step is already clear
+
+## Output shape
+
+Keep the discussion short and decision-oriented.
+
+Aim to leave the user with:
+- a clearer task boundary
+- a recommended direction
+- a reason for that recommendation
+
+If the task becomes clear quickly, stop brainstorming and move on.
+
 ## Output style
 
 - concise

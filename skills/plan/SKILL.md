@@ -22,6 +22,20 @@ Use this skill when the work is clearly multi-step and should be broken down bef
 - include verification steps
 - route code-changing implementation through `tdd`
 
+## Planning discipline
+
+Use the shortest plan that still reduces mistakes.
+
+Prefer:
+- no written plan for small obvious work
+- a short inline plan for moderate tasks
+- a written plan only when sequencing, scope, or coordination really matter
+
+Every plan should answer:
+- what gets done first
+- what can be verified after each step
+- where the risky parts are
+
 ## Output options
 
 - short inline plan for moderate tasks

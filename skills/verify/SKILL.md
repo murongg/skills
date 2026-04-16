@@ -24,6 +24,21 @@ Before saying a task is complete, report:
 - If behavior changed, include the command, test, or runtime evidence that demonstrates the new behavior.
 - If verification could not be run, say so explicitly and explain why.
 
+## Required language discipline
+
+Avoid completion language before evidence exists.
+
+Bad patterns:
+- should work now
+- probably fixed
+- seems done
+- looks correct
+
+Good pattern:
+- describe the command or check
+- report the observed result
+- state what is still unverified, if anything
+
 ## Hard stop
 
 Do not say "done", "fixed", or "complete" without evidence.
