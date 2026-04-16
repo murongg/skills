@@ -94,4 +94,20 @@ if [ "$(readlink "$TEST_HOME/.config/opencode/skills/my-skills")" != "$TEST_HOME
     exit 1
 fi
 
+REMOTE_TEST_HOME="$(mktemp -d)"
+cp "$INSTALL_SCRIPT" "$REMOTE_TEST_HOME/install.sh"
+
+if HOME="$TEST_HOME" bash "$REMOTE_TEST_HOME/install.sh" --platform codex >/tmp/my-skills-remote-install.log 2>&1; then
+    :
+else
+    echo "[FAIL] install.sh should bootstrap from a temporary clone when executed outside the repo"
+    cat /tmp/my-skills-remote-install.log
+    exit 1
+fi
+
+if [ ! -d "$TEST_HOME/.agents/skills/my-skills" ]; then
+    echo "[FAIL] repo-bootstrap install did not create the central skills directory"
+    exit 1
+fi
+
 echo "[PASS] install.sh supports interactive mode and installs one central clean skills tree under ~/.agents"

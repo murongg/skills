@@ -3,6 +3,26 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_URL="https://github.com/murongg/skills.git"
+
+bootstrap_repo_if_needed() {
+    if [ -d "$REPO_ROOT/skills" ] && [ -d "$REPO_ROOT/vendor/vercel-skills" ] && [ -d "$REPO_ROOT/vendor/ui-ux-pro-max" ]; then
+        return 0
+    fi
+
+    local bootstrap_root bootstrap_repo
+    bootstrap_root="$(mktemp -d)"
+    bootstrap_repo="$bootstrap_root/skills"
+
+    git clone "$REPO_URL" "$bootstrap_repo" >/dev/null 2>&1
+    git -C "$bootstrap_repo" submodule update --init --recursive >/dev/null 2>&1
+
+    REPO_ROOT="$bootstrap_repo"
+    SCRIPT_DIR="$bootstrap_repo/scripts"
+}
+
+bootstrap_repo_if_needed
+
 SKILLS_SOURCE="$REPO_ROOT/skills"
 SKILL_NAME="my-skills"
 GENERATED_ROOT="$REPO_ROOT/.generated"

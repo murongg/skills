@@ -83,33 +83,27 @@ If you cloned the repo somewhere other than `~/my-skills`, the installer still w
 
 ### Manual installation
 
-If you prefer to install manually, create the central directory first, then link other platforms to it.
+Manual file copying is intentionally not documented here.
 
-#### Codex / Codex CLI
+Use the installer script instead so it can:
+- bootstrap the repo when running from `curl | bash`
+- fetch submodules
+- build the generated clean skills tree correctly
+- install a real central directory under `~/.agents/skills/my-skills`
+- point Claude Code and OpenCode at that central install
+
+Recommended commands:
 
 ```bash
-git clone https://github.com/murongg/skills.git ~/my-skills
-cd ~/my-skills
-mkdir -p ~/.agents/skills
-cp -R "$(pwd)/skills" ~/.agents/skills/my-skills
+curl -fsSL https://raw.githubusercontent.com/murongg/skills/main/scripts/install.sh | bash
 ```
 
-#### OpenCode
+Or, for a specific platform:
 
 ```bash
-git clone https://github.com/murongg/skills.git ~/my-skills
-cd ~/my-skills
-mkdir -p ~/.config/opencode/skills
-ln -s ~/.agents/skills/my-skills ~/.config/opencode/skills/my-skills
-```
-
-#### Claude Code
-
-```bash
-git clone https://github.com/murongg/skills.git ~/my-skills
-cd ~/my-skills
-mkdir -p ~/.claude/skills
-ln -s ~/.agents/skills/my-skills ~/.claude/skills/my-skills
+curl -fsSL https://raw.githubusercontent.com/murongg/skills/main/scripts/install.sh | bash -s -- --platform codex
+curl -fsSL https://raw.githubusercontent.com/murongg/skills/main/scripts/install.sh | bash -s -- --platform opencode
+curl -fsSL https://raw.githubusercontent.com/murongg/skills/main/scripts/install.sh | bash -s -- --platform claude
 ```
 
 ## Verify Installation
