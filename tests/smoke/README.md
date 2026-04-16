@@ -24,6 +24,9 @@ grep -n "Do not say \"done\"" skills/verify/SKILL.md
 grep -n "Only escalate into a written spec if the task is large enough" skills/brainstorm/SKILL.md
 grep -n "short inline plan for moderate tasks" skills/plan/SKILL.md
 grep -n "Use this skill to move from understanding into implementation" skills/execute/SKILL.md
+grep -n "severity order" skills/review/SKILL.md
+grep -n "file and line references" skills/review/SKILL.md
+grep -n "If no findings are discovered" skills/review/SKILL.md
 ```
 
 Expected results:
