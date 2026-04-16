@@ -24,4 +24,74 @@ if grep -q "Select installation target" <<< "$non_interactive_output"; then
     exit 1
 fi
 
-echo "[PASS] install.sh supports interactive and non-interactive modes"
+TEST_HOME="$(mktemp -d)"
+trap 'rm -rf "$TEST_HOME"' EXIT
+
+HOME="$TEST_HOME" bash "$INSTALL_SCRIPT" --platform all >/dev/null 2>&1
+
+if [ ! -d "$TEST_HOME/.agents/skills/my-skills" ]; then
+    echo "[FAIL] install.sh did not create the central my-skills directory under ~/.agents/skills"
+    exit 1
+fi
+
+if [ -L "$TEST_HOME/.agents/skills/my-skills" ]; then
+    echo "[FAIL] ~/.agents/skills/my-skills should be a real directory, not a symlink"
+    exit 1
+fi
+
+if [ ! -f "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max/SKILL.md" ]; then
+    echo "[FAIL] central my-skills install does not include vendored ui-ux-pro-max inside the generated skills tree"
+    exit 1
+fi
+
+if [ -L "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max" ]; then
+    echo "[FAIL] vendored ui-ux-pro-max inside ~/.agents/skills/my-skills should be real files, not a symlink"
+    exit 1
+fi
+
+if [ ! -d "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max/data" ] || [ -L "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max/data" ]; then
+    echo "[FAIL] ui-ux-pro-max/data should be a real directory in the installed skills tree"
+    exit 1
+fi
+
+if [ ! -d "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max/scripts" ] || [ -L "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max/scripts" ]; then
+    echo "[FAIL] ui-ux-pro-max/scripts should be a real directory in the installed skills tree"
+    exit 1
+fi
+
+if [ ! -f "$TEST_HOME/.agents/skills/my-skills/vercel-react-best-practices/SKILL.md" ]; then
+    echo "[FAIL] central my-skills install does not include vendored vercel-react-best-practices inside the generated skills tree"
+    exit 1
+fi
+
+if [ -L "$TEST_HOME/.agents/skills/my-skills/vercel-react-best-practices" ]; then
+    echo "[FAIL] vendored vercel-react-best-practices inside ~/.agents/skills/my-skills should be real files, not a symlink"
+    exit 1
+fi
+
+if [ ! -f "$TEST_HOME/.agents/skills/my-skills/composition-patterns/SKILL.md" ]; then
+    echo "[FAIL] central my-skills install does not include vendored composition-patterns inside the generated skills tree"
+    exit 1
+fi
+
+if [ ! -L "$TEST_HOME/.claude/skills/my-skills" ]; then
+    echo "[FAIL] install.sh did not link Claude to the central my-skills directory"
+    exit 1
+fi
+
+if [ ! -L "$TEST_HOME/.config/opencode/skills/my-skills" ]; then
+    echo "[FAIL] install.sh did not link OpenCode to the central my-skills directory"
+    exit 1
+fi
+
+if [ "$(readlink "$TEST_HOME/.claude/skills/my-skills")" != "$TEST_HOME/.agents/skills/my-skills" ]; then
+    echo "[FAIL] Claude my-skills link does not point to ~/.agents/skills/my-skills"
+    exit 1
+fi
+
+if [ "$(readlink "$TEST_HOME/.config/opencode/skills/my-skills")" != "$TEST_HOME/.agents/skills/my-skills" ]; then
+    echo "[FAIL] OpenCode my-skills link does not point to ~/.agents/skills/my-skills"
+    exit 1
+fi
+
+echo "[PASS] install.sh supports interactive mode and installs one central clean skills tree under ~/.agents"

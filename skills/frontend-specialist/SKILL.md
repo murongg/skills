@@ -7,7 +7,7 @@ description: Use when working on React, Next.js, or broader frontend architectur
 
 ## Purpose
 
-Bridge `my-skills` to frontend specialist guidance vendored via submodule without bloating the core workflow skills.
+Bridge `my-skills` to frontend specialist guidance that is merged into the generated install tree without bloating the core workflow skills.
 
 ## When to use it
 
@@ -31,11 +31,9 @@ Bridge `my-skills` to frontend specialist guidance vendored via submodule withou
 
 ## Reference source
 
-This repo vendors frontend specialist guidance via a git submodule at:
+This repo keeps frontend specialist guidance in vendor sources, and the installer merges the selected specialist skills into the generated install tree.
 
-`vendor/vercel-skills/skills/`
-
-Available vendored specialist skills:
+Available specialist skills during install:
 
 - `vendor/vercel-skills/skills/react-best-practices/`
 - `vendor/vercel-skills/skills/composition-patterns/`
@@ -44,6 +42,7 @@ Available vendored specialist skills:
 - `vendor/vercel-skills/skills/web-design-guidelines/`
 - `vendor/vercel-skills/skills/vercel-cli-with-tokens/`
 - `vendor/vercel-skills/skills/deploy-to-vercel/`
+- `vendor/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/`
 
 Start with:
 - `vendor/vercel-skills/skills/react-best-practices/SKILL.md`
@@ -55,7 +54,8 @@ Then branch as needed:
 - use `web-design-guidelines` for broader web UI quality guidance
 - use `react-native-skills` only for React Native work
 - use `deploy-to-vercel` or `vercel-cli-with-tokens` for Vercel deployment workflow questions
+- use `ui-ux-pro-max` for broader UI/UX specialist guidance
 
 ## Working rule
 
-Do not copy the entire rule set into core skills. Use the vendored reference when frontend work actually calls for deeper specialist guidance.
+Do not copy these framework-specific rules into the core workflow skills. Use the generated specialist skills when frontend work actually calls for deeper guidance.

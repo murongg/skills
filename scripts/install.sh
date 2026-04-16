@@ -5,6 +5,18 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 SKILLS_SOURCE="$REPO_ROOT/skills"
 SKILL_NAME="my-skills"
+GENERATED_ROOT="$REPO_ROOT/.generated"
+GENERATED_SKILLS_DIR="$GENERATED_ROOT/skills"
+VENDORED_SKILLS=(
+    "vendor/vercel-skills/skills/react-best-practices:vercel-react-best-practices"
+    "vendor/vercel-skills/skills/composition-patterns:composition-patterns"
+    "vendor/vercel-skills/skills/react-native-skills:react-native-skills"
+    "vendor/vercel-skills/skills/react-view-transitions:react-view-transitions"
+    "vendor/vercel-skills/skills/web-design-guidelines:web-design-guidelines"
+    "vendor/vercel-skills/skills/vercel-cli-with-tokens:vercel-cli-with-tokens"
+    "vendor/vercel-skills/skills/deploy-to-vercel:deploy-to-vercel"
+    "vendor/ui-ux-pro-max/.claude/skills/ui-ux-pro-max:ui-ux-pro-max"
+)
 
 usage() {
     cat <<EOF
@@ -54,7 +66,8 @@ confirm_install() {
     cat <<EOF
 
 About to install for: $TARGET_PLATFORM
-Skills source: $SKILLS_SOURCE
+Core skills source: $SKILLS_SOURCE
+Generated install tree: $GENERATED_SKILLS_DIR
 EOF
 
     printf 'Proceed? [y/N]: '
@@ -98,16 +111,46 @@ if [ -z "$TARGET_PLATFORM" ]; then
     confirm_install
 fi
 
-ensure_link() {
+prepare_generated_tree() {
+    local source_path entry source_rel_path alias_name
+
+    rm -rf "$GENERATED_SKILLS_DIR"
+    mkdir -p "$GENERATED_SKILLS_DIR"
+
+    for source_path in "$SKILLS_SOURCE"/*; do
+        [ -d "$source_path" ] || continue
+        mkdir -p "$GENERATED_SKILLS_DIR/${source_path##*/}"
+        cp -R "$source_path/." "$GENERATED_SKILLS_DIR/${source_path##*/}/"
+    done
+
+    for entry in "${VENDORED_SKILLS[@]}"; do
+        source_rel_path="${entry%%:*}"
+        alias_name="${entry##*:}"
+        source_path="$REPO_ROOT/$source_rel_path"
+
+        if [ ! -d "$source_path" ]; then
+            echo "[FAIL] Missing vendored skill source: $source_path" >&2
+            exit 1
+        fi
+
+        mkdir -p "$GENERATED_SKILLS_DIR/$alias_name"
+        cp -R -L "$source_path/." "$GENERATED_SKILLS_DIR/$alias_name/"
+    done
+}
+
+prepare_generated_tree
+
+ensure_symlink() {
     local target_dir="$1"
     local target_path="$2"
+    local source_path="$3"
 
     mkdir -p "$target_dir"
 
     if [ -L "$target_path" ]; then
         local current_target
         current_target="$(readlink "$target_path")"
-        if [ "$current_target" = "$SKILLS_SOURCE" ]; then
+        if [ "$current_target" = "$source_path" ]; then
             echo "[OK] Already linked: $target_path"
             return 0
         fi
@@ -123,20 +166,43 @@ ensure_link() {
         exit 1
     fi
 
-    ln -s "$SKILLS_SOURCE" "$target_path"
-    echo "[OK] Linked $target_path -> $SKILLS_SOURCE"
+    ln -s "$source_path" "$target_path"
+    echo "[OK] Linked $target_path -> $source_path"
+}
+
+install_central_tree() {
+    local central_dir="$HOME/.agents/skills/$SKILL_NAME"
+
+    mkdir -p "$HOME/.agents/skills"
+
+    if [ -L "$central_dir" ]; then
+        echo "[FAIL] $central_dir is a symlink, but ~/.agents must contain a real directory" >&2
+        echo "       Remove it manually, then rerun this script." >&2
+        exit 1
+    fi
+
+    if [ -e "$central_dir" ] && [ ! -d "$central_dir" ]; then
+        echo "[FAIL] $central_dir exists and is not a directory" >&2
+        echo "       Remove it manually, then rerun this script." >&2
+        exit 1
+    fi
+
+    rm -rf "$central_dir"
+    mkdir -p "$central_dir"
+    cp -R "$GENERATED_SKILLS_DIR/." "$central_dir/"
+    echo "[OK] Installed real skills directory at $central_dir"
 }
 
 install_codex() {
-    ensure_link "$HOME/.agents/skills" "$HOME/.agents/skills/$SKILL_NAME"
+    install_central_tree
 }
 
 install_opencode() {
-    ensure_link "$HOME/.config/opencode/skills" "$HOME/.config/opencode/skills/$SKILL_NAME"
+    ensure_symlink "$HOME/.config/opencode/skills" "$HOME/.config/opencode/skills/$SKILL_NAME" "$HOME/.agents/skills/$SKILL_NAME"
 }
 
 install_claude() {
-    ensure_link "$HOME/.claude/skills" "$HOME/.claude/skills/$SKILL_NAME"
+    ensure_symlink "$HOME/.claude/skills" "$HOME/.claude/skills/$SKILL_NAME" "$HOME/.agents/skills/$SKILL_NAME"
 }
 
 case "$TARGET_PLATFORM" in
@@ -170,5 +236,5 @@ Next steps:
   2. Ask it to load or use the \
      $SKILL_NAME/use-my-skills skill.
   3. Verify that it can see files under:
-     $SKILLS_SOURCE
+     $GENERATED_SKILLS_DIR
 EOF

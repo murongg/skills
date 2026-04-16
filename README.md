@@ -68,20 +68,22 @@ curl -fsSL https://raw.githubusercontent.com/murongg/skills/main/scripts/install
 ```
 
 What it does:
-- creates a symlink from the platform's skills directory to this repo's `skills/`
+- builds a generated clean skills tree that combines your core skills with selected vendored specialist skills
+- installs that clean skills tree as a real directory under `~/.agents/skills/my-skills`
+- links Claude Code and OpenCode to that central directory
 - never overwrites an existing non-symlink directory
 - stops with a clear error if the target path already exists and points somewhere else
 
 Installed locations:
-- Codex / Codex CLI: `~/.agents/skills/my-skills`
-- OpenCode: `~/.config/opencode/skills/my-skills`
-- Claude Code: `~/.claude/skills/my-skills`
+- Codex / Codex CLI: real directory at `~/.agents/skills/my-skills`
+- OpenCode: symlink at `~/.config/opencode/skills/my-skills`
+- Claude Code: symlink at `~/.claude/skills/my-skills`
 
-If you cloned the repo somewhere other than `~/my-skills`, the installer still works. It links the platform skill directories to the current repo's `skills/` directory.
+If you cloned the repo somewhere other than `~/my-skills`, the installer still works. It builds the generated skills tree from the current repo, copies it into `~/.agents/skills/my-skills`, and then points the other platform directories at that central install.
 
 ### Manual installation
 
-If you prefer to install manually, create the same symlink yourself.
+If you prefer to install manually, create the central directory first, then link other platforms to it.
 
 #### Codex / Codex CLI
 
@@ -89,7 +91,7 @@ If you prefer to install manually, create the same symlink yourself.
 git clone https://github.com/murongg/skills.git ~/my-skills
 cd ~/my-skills
 mkdir -p ~/.agents/skills
-ln -s "$(pwd)/skills" ~/.agents/skills/my-skills
+cp -R "$(pwd)/skills" ~/.agents/skills/my-skills
 ```
 
 #### OpenCode
@@ -98,7 +100,7 @@ ln -s "$(pwd)/skills" ~/.agents/skills/my-skills
 git clone https://github.com/murongg/skills.git ~/my-skills
 cd ~/my-skills
 mkdir -p ~/.config/opencode/skills
-ln -s "$(pwd)/skills" ~/.config/opencode/skills/my-skills
+ln -s ~/.agents/skills/my-skills ~/.config/opencode/skills/my-skills
 ```
 
 #### Claude Code
@@ -107,7 +109,7 @@ ln -s "$(pwd)/skills" ~/.config/opencode/skills/my-skills
 git clone https://github.com/murongg/skills.git ~/my-skills
 cd ~/my-skills
 mkdir -p ~/.claude/skills
-ln -s "$(pwd)/skills" ~/.claude/skills/my-skills
+ln -s ~/.agents/skills/my-skills ~/.claude/skills/my-skills
 ```
 
 ## Verify Installation
@@ -135,26 +137,32 @@ Typical flows:
 
 ## Project Layout
 
-- `skills/` - the installable skill set
+- `skills/` - your core workflow skill set
 - `skills/references/` - shared tool mapping and complexity guidance
-- `vendor/` - external specialist repositories tracked separately from the core workflow skills
+- `vendor/` - upstream sources kept for synchronization reference
+- `.generated/` - installer-built clean skill tree used for local installation
 - `docs/specs/` - local design notes, ignored by git by default
 - `docs/plans/` - local implementation plans, ignored by git by default
 - `tests/smoke/` - lightweight repository checks
 
 ## Vendored Skills
 
-This repo vendors external specialist guidance when it is useful, but keeps it separate from the core `my-skills` workflow.
-
-Current vendor:
-- `vendor/vercel-skills`
+This repo uses external specialist guidance when it is useful, but exposes the selected skills through the installer-generated clean skill tree instead of checking them into the core `skills/` directory.
 
 Current bridge skill:
 - `frontend-specialist`
 
-Use that bridge when React or Next.js work needs deeper performance guidance, instead of stuffing framework-specific rules into `use-my-skills`, `triage`, or `review`.
+Selected specialist skills are merged into the generated install tree, including:
+- `vercel-react-best-practices`
+- `composition-patterns`
+- `react-native-skills`
+- `react-view-transitions`
+- `web-design-guidelines`
+- `vercel-cli-with-tokens`
+- `deploy-to-vercel`
+- `ui-ux-pro-max`
 
-The current Vercel integration is tracked as a git submodule at `vendor/vercel-skills`. The bridge skill only references the upstream `skills/` subtree, so the core workflow stays focused even though the full upstream repo is present.
+Use `frontend-specialist` when React, Next.js, or broader frontend work needs deeper specialist guidance, instead of stuffing framework-specific rules into `use-my-skills`, `triage`, or `review`.
 
 ## Current Status
 

@@ -1,3 +1,6 @@
 [submodule "vendor/vercel-skills"]
 	path = vendor/vercel-skills
 	url = https://github.com/vercel-labs/agent-skills.git
+[submodule "vendor/ui-ux-pro-max"]
+	path = vendor/ui-ux-pro-max
+	url = https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git
