@@ -1,0 +1,6 @@
+docs/specs/*
+docs/specs/.gitkeep
+docs/plans/*
+docs/plans/.gitkeep
+.DS_Store
+node_modules/
