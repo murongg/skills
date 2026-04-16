@@ -24,6 +24,9 @@ Phase 2 adds:
 - `plan`
 - `review`
 
+Specialized guidance can also be layered in without bloating the core workflow. This repo vendors frontend guidance and exposes it through a thin bridge skill:
+- `frontend-specialist`
+
 ## Quick Start
 
 Run the installer directly with `curl`:
@@ -134,9 +137,24 @@ Typical flows:
 
 - `skills/` - the installable skill set
 - `skills/references/` - shared tool mapping and complexity guidance
+- `vendor/` - external specialist repositories tracked separately from the core workflow skills
 - `docs/specs/` - local design notes, ignored by git by default
 - `docs/plans/` - local implementation plans, ignored by git by default
 - `tests/smoke/` - lightweight repository checks
+
+## Vendored Skills
+
+This repo vendors external specialist guidance when it is useful, but keeps it separate from the core `my-skills` workflow.
+
+Current vendor:
+- `vendor/vercel-skills`
+
+Current bridge skill:
+- `frontend-specialist`
+
+Use that bridge when React or Next.js work needs deeper performance guidance, instead of stuffing framework-specific rules into `use-my-skills`, `triage`, or `review`.
+
+The current Vercel integration is tracked as a git submodule at `vendor/vercel-skills`. The bridge skill only references the upstream `skills/` subtree, so the core workflow stays focused even though the full upstream repo is present.
 
 ## Current Status
 
