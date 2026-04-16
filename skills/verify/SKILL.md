@@ -1,3 +1,8 @@
+---
+name: verify
+description: Use when work appears complete and you need fresh evidence from tests, commands, or runtime checks before claiming success.
+---
+
 # Skill: verify
 
 ## Purpose

@@ -1,3 +1,8 @@
+---
+name: debug
+description: Use when there is a bug, failing test, unexpected behavior, or runtime error and you need root-cause investigation before attempting a fix.
+---
+
 # Skill: debug
 
 ## Purpose

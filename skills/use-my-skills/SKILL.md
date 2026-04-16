@@ -1,3 +1,8 @@
+---
+name: use-my-skills
+description: Use when starting any non-trivial development task and you need lightweight routing before deciding whether to execute directly, debug, or escalate into planning.
+---
+
 # Skill: use-my-skills
 
 ## Purpose

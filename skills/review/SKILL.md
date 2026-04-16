@@ -1,3 +1,8 @@
+---
+name: review
+description: Use when a change is broad, higher-risk, or explicitly needs inspection for correctness, regressions, missing tests, or scope drift before completion.
+---
+
 # Skill: review
 
 ## Purpose

@@ -1,3 +1,8 @@
+---
+name: brainstorm
+description: Use when requirements are ambiguous, multiple viable approaches exist, or wrong assumptions would be costly and you need focused clarification before implementation.
+---
+
 # Skill: brainstorm
 
 ## Purpose

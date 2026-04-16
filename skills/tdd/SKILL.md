@@ -1,3 +1,8 @@
+---
+name: tdd
+description: Use when changing production code, fixing behavior in code, or making a code-level refactor that requires a failing test before implementation.
+---
+
 # Skill: tdd
 
 TDD is mandatory for code changes.

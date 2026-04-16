@@ -1,3 +1,8 @@
+---
+name: triage
+description: Use when a task needs a quick complexity, scope, or risk check before deciding whether to answer directly, debug first, or escalate into brainstorming or planning.
+---
+
 # Skill: triage
 
 ## Purpose

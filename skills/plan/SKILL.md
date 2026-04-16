@@ -1,3 +1,8 @@
+---
+name: plan
+description: Use when work spans multiple steps, files, or execution passes and explicit task breakdown would reduce mistakes before implementation begins.
+---
+
 # Skill: plan
 
 ## Purpose
