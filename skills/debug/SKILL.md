@@ -9,6 +9,10 @@ description: Use when there is a bug, failing test, unexpected behavior, or runt
 
 Debug from evidence instead of guessing.
 
+## Fast-path exception
+
+Do not force this skill when the bug is already clear, narrowly scoped, and ready for a direct fix. In that case, fix it directly and still use `tdd` for code changes plus `verify` before completion.
+
 ## Required sequence
 
 1. Restate the observed failure.

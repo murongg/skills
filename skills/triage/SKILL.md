@@ -31,8 +31,11 @@ Add this only when needed:
 
 ## Routing rules
 
+When a bug is clear and well-scoped, do not pause just to ask whether to try fixing it.
+
 - Code change -> `tdd`
-- Bug, failing test, error, abnormal behavior -> `debug`
+- Clear, well-scoped bug with a concrete symptom -> direct execution, then `tdd` if code changes, then `verify`
+- Bug, failing test, error, abnormal behavior with unclear cause -> `debug`
 - Ambiguous or broad work -> `brainstorm`, then `plan`
 - Completion claim -> `verify`
 

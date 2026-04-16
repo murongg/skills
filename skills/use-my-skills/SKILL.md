@@ -36,7 +36,8 @@ Do not escalate into a formal spec or plan unless the task is ambiguous, broad, 
 ## Hard rules
 
 - If code will change, route into `tdd`.
-- If the task is a bug, failure, or abnormal behavior, route into `debug` first.
+- If the task is a clear, well-scoped bug with an obvious reproduction path, the assistant may attempt a fix directly instead of stopping to ask for permission.
+- If the task is a bug, failure, or abnormal behavior and the cause is not yet clear, route into `debug` first.
 - Before claiming completion, route into `verify`.
 
 ## User-facing style

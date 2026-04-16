@@ -135,6 +135,11 @@ Typical flows:
 - Ambiguous feature work:
   `use-my-skills -> triage -> brainstorm -> plan -> review -> verify`
 
+Bug handling rule:
+
+- If a bug is clear and well-scoped, `my-skills` should try fixing it directly instead of pausing just to ask for permission.
+- If the cause is unclear, it should route into `debug` first.
+
 ## Project Layout
 
 - `skills/` - your core workflow skill set
