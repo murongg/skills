@@ -8,7 +8,9 @@
 
 ## Hard rules
 
-- Code changes require TDD.
+- Behavior-changing code changes require TDD.
+- Pure text, documentation, comment, prompt, or non-functional file cleanup changes do not require unit tests.
+- Deletions, refactors, or file removals that may affect runtime behavior must be verified with tests or equivalent evidence.
 - Do not claim work is complete without verification evidence.
 - Specs and plans may be written to `docs/specs/` and `docs/plans/`, but they are local working files and are not committed unless explicitly requested.
 
