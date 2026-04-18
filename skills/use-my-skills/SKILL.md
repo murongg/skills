@@ -50,6 +50,7 @@ Escalate before acting when:
 
 - the task has multiple plausible approaches with meaningful trade-offs
 - the bug is not yet understood well enough to reproduce or explain
+- the task is a complex feature and should be planned before execution
 - the change is broad enough that sequencing matters
 - the likely blast radius is high
 
@@ -58,6 +59,7 @@ Escalation should be proportional. Prefer the lightest workflow that reduces rea
 ## Hard rules
 
 - If code will change, route into `tdd`.
+- If the task is a complex feature, route into `plan` before execution.
 - If the task is a clear, well-scoped bug with an obvious reproduction path, the assistant may attempt a fix directly instead of stopping to ask for permission.
 - If the task is a bug, failure, or abnormal behavior and the cause is not yet clear, route into `debug` first.
 - Before claiming completion, route into `verify`.

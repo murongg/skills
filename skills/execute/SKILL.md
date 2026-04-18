@@ -16,6 +16,8 @@ Use this skill to move from understanding into implementation.
 - a written plan already exists
 - the next step is implementation, not more discussion
 
+Do not use this skill as the first step for complex features. Route those through `plan` before execution.
+
 ## Core rule
 
 Choose the lightest execution shape that is still responsible.
@@ -28,6 +30,7 @@ Prefer:
 ## Execution rules
 
 - If code changes, route through `tdd`.
+- If the work is a complex feature and no plan exists yet, route into `plan` before continuing.
 - If the work reveals an unclear bug, route back into `debug`.
 - If the work reveals missing design clarity, route back into `brainstorm` or `plan`.
 - Before claiming completion, route into `verify`.

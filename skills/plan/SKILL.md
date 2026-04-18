@@ -13,6 +13,7 @@ Use this skill when the work is clearly multi-step and should be broken down bef
 
 - the task spans multiple files or modules
 - the task will likely take multiple execution passes
+- the task is a complex feature
 - explicit sequencing would reduce mistakes
 
 ## Planning rules
@@ -20,6 +21,7 @@ Use this skill when the work is clearly multi-step and should be broken down bef
 - break the work into concrete steps
 - keep the plan as short as the task allows
 - include verification steps
+- use `plan` before execution for complex features
 - route code-changing implementation through `tdd`
 
 ## Planning discipline
