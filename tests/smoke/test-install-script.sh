@@ -44,6 +44,11 @@ if [ ! -f "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max/SKILL.md" ]; then
     exit 1
 fi
 
+if [ ! -f "$TEST_HOME/.agents/skills/my-skills/impeccable/SKILL.md" ]; then
+    echo "[FAIL] central my-skills install does not include vendored impeccable frontend-design inside the generated skills tree"
+    exit 1
+fi
+
 if [ -L "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max" ]; then
     echo "[FAIL] vendored ui-ux-pro-max inside ~/.agents/skills/my-skills should be real files, not a symlink"
     exit 1
@@ -97,7 +102,18 @@ fi
 REMOTE_TEST_HOME="$(mktemp -d)"
 cp "$INSTALL_SCRIPT" "$REMOTE_TEST_HOME/install.sh"
 
-if HOME="$TEST_HOME" bash "$REMOTE_TEST_HOME/install.sh" --platform codex >/tmp/my-skills-remote-install.log 2>&1; then
+BOOTSTRAP_SOURCE_ROOT="$(mktemp -d)"
+trap 'rm -rf "$TEST_HOME" "$REMOTE_TEST_HOME" "$BOOTSTRAP_SOURCE_ROOT"' EXIT
+BOOTSTRAP_SOURCE_REPO="$BOOTSTRAP_SOURCE_ROOT/skills"
+rsync -a --exclude .git --exclude .generated "$REPO_ROOT/" "$BOOTSTRAP_SOURCE_REPO/"
+git -C "$BOOTSTRAP_SOURCE_REPO" init >/dev/null 2>&1
+git -C "$BOOTSTRAP_SOURCE_REPO" add . >/dev/null 2>&1
+git -C "$BOOTSTRAP_SOURCE_REPO" \
+    -c user.name="Smoke Test" \
+    -c user.email="smoke@example.com" \
+    commit -m "Create bootstrap fixture" >/dev/null 2>&1
+
+if MY_SKILLS_REPO_URL="$BOOTSTRAP_SOURCE_REPO" HOME="$TEST_HOME" bash "$REMOTE_TEST_HOME/install.sh" --platform codex >/tmp/my-skills-remote-install.log 2>&1; then
     :
 else
     echo "[FAIL] install.sh should bootstrap from a temporary clone when executed outside the repo"

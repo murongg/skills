@@ -43,6 +43,7 @@ Available specialist skills during install:
 - `vendor/vercel-skills/skills/vercel-cli-with-tokens/`
 - `vendor/vercel-skills/skills/deploy-to-vercel/`
 - `vendor/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/`
+- `vendor/impeccable/.agents/skills/impeccable/`
 
 Start with:
 - `vendor/vercel-skills/skills/react-best-practices/SKILL.md`
@@ -55,6 +56,7 @@ Then branch as needed:
 - use `react-native-skills` only for React Native work
 - use `deploy-to-vercel` or `vercel-cli-with-tokens` for Vercel deployment workflow questions
 - use `ui-ux-pro-max` for broader UI/UX specialist guidance
+- use `impeccable` for frontend-design craft, critique, polish, and anti-pattern guidance
 
 ## Working rule
 

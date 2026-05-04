@@ -4,3 +4,6 @@
 [submodule "vendor/ui-ux-pro-max"]
 	path = vendor/ui-ux-pro-max
 	url = https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git
+[submodule "vendor/impeccable"]
+	path = vendor/impeccable
+	url = https://github.com/pbakaus/impeccable.git

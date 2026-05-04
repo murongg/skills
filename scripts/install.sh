@@ -3,10 +3,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-REPO_URL="https://github.com/murongg/skills.git"
+REPO_URL="${MY_SKILLS_REPO_URL:-https://github.com/murongg/skills.git}"
 
 bootstrap_repo_if_needed() {
-    if [ -d "$REPO_ROOT/skills" ] && [ -d "$REPO_ROOT/vendor/vercel-skills" ] && [ -d "$REPO_ROOT/vendor/ui-ux-pro-max" ]; then
+    if [ -d "$REPO_ROOT/skills" ] && [ -d "$REPO_ROOT/vendor/vercel-skills" ] && [ -d "$REPO_ROOT/vendor/ui-ux-pro-max" ] && [ -d "$REPO_ROOT/vendor/impeccable" ]; then
         return 0
     fi
 
@@ -36,6 +36,7 @@ VENDORED_SKILLS=(
     "vendor/vercel-skills/skills/vercel-cli-with-tokens:vercel-cli-with-tokens"
     "vendor/vercel-skills/skills/deploy-to-vercel:deploy-to-vercel"
     "vendor/ui-ux-pro-max/.claude/skills/ui-ux-pro-max:ui-ux-pro-max"
+    "vendor/impeccable/.agents/skills/impeccable:impeccable"
 )
 
 usage() {

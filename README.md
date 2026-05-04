@@ -165,6 +165,7 @@ Selected specialist skills are merged into the generated install tree, including
 - `vercel-cli-with-tokens`
 - `deploy-to-vercel`
 - `ui-ux-pro-max`
+- `impeccable` (Impeccable's frontend-design skill)
 
 Use `frontend-specialist` when React, Next.js, or broader frontend work needs deeper specialist guidance, instead of stuffing framework-specific rules into `use-my-skills`, `triage`, or `review`.
 
