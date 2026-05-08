@@ -24,6 +24,7 @@
 
 ## Git
 
+- When creating, switching, syncing, renaming, deleting, or publishing git branches, use `git-branch-management`.
 - When drafting, rewriting, reviewing, or choosing a git commit message, use `git-commit-message`.
 - If the user provides an exact commit message, preserve it unless it conflicts with the requested convention or repository rules.
 

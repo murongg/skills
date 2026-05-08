@@ -74,6 +74,11 @@ if [ ! -f "$TEST_HOME/.agents/skills/my-skills/git-commit-message/SKILL.md" ]; t
     exit 1
 fi
 
+if [ ! -f "$TEST_HOME/.agents/skills/my-skills/git-branch-management/SKILL.md" ]; then
+    echo "[FAIL] central my-skills install does not include the git-branch-management skill"
+    exit 1
+fi
+
 if [ -L "$TEST_HOME/.agents/skills/my-skills/ui-ux-pro-max" ]; then
     echo "[FAIL] vendored ui-ux-pro-max inside ~/.agents/skills/my-skills should be real files, not a symlink"
     exit 1

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Branch Management"
+  short_description: "Manage git branches safely"
+  default_prompt: "Use $git-branch-management to create, switch, sync, or clean up git branches safely."
