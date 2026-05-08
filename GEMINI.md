@@ -28,6 +28,10 @@
 - When drafting, rewriting, reviewing, or choosing a git commit message, use `git-commit-message`.
 - If the user provides an exact commit message, preserve it unless it conflicts with the requested convention or repository rules.
 
+## Code Quality
+
+- When implementation or review reveals meaningful coupling, duplication, unclear ownership, or encapsulation opportunities, use `code-modularity`.
+
 ## Tone
 
 - Professional

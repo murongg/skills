@@ -21,6 +21,7 @@ Inspect higher-risk work for defects, regressions, missing tests, and scope drif
 2. regression risk
 3. missing or weak test coverage
 4. unnecessary scope expansion
+5. meaningful coupling, duplication, or ownership-boundary risks
 
 Present findings in severity order.
 
@@ -44,6 +45,7 @@ If no findings are discovered, say that explicitly and mention any remaining ris
 
 - if review finds a likely bug, route back into `debug`
 - if review finds missing code coverage, route back into `tdd`
+- if review finds meaningful coupling, duplication, unclear ownership, or encapsulation risk, route into `code-modularity`
 - after changes are complete, route into `verify`
 
 ## Anti-patterns

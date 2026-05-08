@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Modularity"
+  short_description: "Improve encapsulation and decoupling"
+  default_prompt: "Use $code-modularity to identify safe encapsulation and decoupling opportunities in this change."

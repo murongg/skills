@@ -30,6 +30,7 @@ Phase 2 adds:
 - `review`
 - `git-commit-message`
 - `git-branch-management`
+- `code-modularity`
 
 Specialized guidance can also be layered in without bloating the core workflow. This repo vendors frontend guidance and exposes it through a thin bridge skill:
 - `frontend-specialist`
@@ -145,6 +146,8 @@ Typical flows:
   `git-commit-message`
 - Branch management:
   `git-branch-management`
+- Modularity and decoupling:
+  `code-modularity`
 
 Bug handling rule:
 
@@ -184,5 +187,5 @@ Use `frontend-specialist` when React, Next.js, or broader frontend work needs de
 ## Current Status
 
 - Phase 1 is implemented: `use-my-skills`, `triage`, `tdd`, `debug`, `verify`
-- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`, `git-commit-message`, `git-branch-management`
+- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`, `git-commit-message`, `git-branch-management`, `code-modularity`
 - Phase 3 is still open: `workspace`, richer platform docs, and broader testing
