@@ -22,6 +22,11 @@
 - If a configuration change affects runtime behavior, verify it with the relevant command or integration build instead of forcing a unit test for the configuration file itself.
 - Deletions, refactors, or file removals that may affect runtime behavior must be verified with tests or equivalent evidence.
 
+## Git
+
+- When drafting, rewriting, reviewing, or choosing a git commit message, use `git-commit-message`.
+- If the user provides an exact commit message, preserve it unless it conflicts with the requested convention or repository rules.
+
 ## Tone
 
 - Professional
