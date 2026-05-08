@@ -28,6 +28,7 @@ Phase 2 adds:
 - `brainstorm`
 - `plan`
 - `review`
+- `git-commit-message`
 
 Specialized guidance can also be layered in without bloating the core workflow. This repo vendors frontend guidance and exposes it through a thin bridge skill:
 - `frontend-specialist`
@@ -139,6 +140,8 @@ Typical flows:
   `use-my-skills -> triage -> debug -> tdd -> execute -> verify`
 - Ambiguous feature work:
   `use-my-skills -> triage -> brainstorm -> plan -> execute -> review -> verify`
+- Commit message drafting:
+  `git-commit-message`
 
 Bug handling rule:
 
@@ -178,5 +181,5 @@ Use `frontend-specialist` when React, Next.js, or broader frontend work needs de
 ## Current Status
 
 - Phase 1 is implemented: `use-my-skills`, `triage`, `tdd`, `debug`, `verify`
-- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`
+- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`, `git-commit-message`
 - Phase 3 is still open: `workspace`, richer platform docs, and broader testing
