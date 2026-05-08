@@ -53,7 +53,12 @@ Supported platforms:
   codex      -> ~/.agents/skills/my-skills
   opencode   -> ~/.config/opencode/skills/my-skills
   claude     -> ~/.claude/skills/my-skills
-  all        -> install all of the above
+  all        -> install all of the above, plus ~/.gemini/GEMINI.md
+
+Base files overwritten:
+  codex      -> ~/.codex/AGENTS.md
+  claude     -> ~/.claude/CLAUDE.md
+  all        -> ~/.codex/AGENTS.md, ~/.claude/CLAUDE.md, ~/.gemini/GEMINI.md
 EOF
 }
 
@@ -214,8 +219,31 @@ install_central_tree() {
     echo "[OK] Installed real skills directory at $central_dir"
 }
 
+install_base_file() {
+    local source_file="$1"
+    local target_file="$2"
+    local target_dir
+
+    if [ ! -f "$source_file" ]; then
+        echo "[FAIL] Missing base file source: $source_file" >&2
+        exit 1
+    fi
+
+    if [ -d "$target_file" ]; then
+        echo "[FAIL] $target_file already exists and is a directory" >&2
+        echo "       Move or remove it manually, then rerun this script." >&2
+        exit 1
+    fi
+
+    target_dir="$(dirname "$target_file")"
+    mkdir -p "$target_dir"
+    cp "$source_file" "$target_file"
+    echo "[OK] Installed base file at $target_file"
+}
+
 install_codex() {
     install_central_tree
+    install_base_file "$REPO_ROOT/AGENTS.md" "$HOME/.codex/AGENTS.md"
 }
 
 install_opencode() {
@@ -224,6 +252,11 @@ install_opencode() {
 
 install_claude() {
     ensure_symlink "$HOME/.claude/skills" "$HOME/.claude/skills/$SKILL_NAME" "$HOME/.agents/skills/$SKILL_NAME"
+    install_base_file "$REPO_ROOT/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+}
+
+install_gemini_base() {
+    install_base_file "$REPO_ROOT/GEMINI.md" "$HOME/.gemini/GEMINI.md"
 }
 
 case "$TARGET_PLATFORM" in
@@ -240,6 +273,7 @@ case "$TARGET_PLATFORM" in
         install_codex
         install_opencode
         install_claude
+        install_gemini_base
         ;;
     *)
         echo "[FAIL] Unsupported platform: $TARGET_PLATFORM" >&2

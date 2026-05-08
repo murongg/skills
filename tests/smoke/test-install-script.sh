@@ -27,10 +27,30 @@ fi
 TEST_HOME="$(mktemp -d)"
 trap 'rm -rf "$TEST_HOME"' EXIT
 
+mkdir -p "$TEST_HOME/.codex" "$TEST_HOME/.claude" "$TEST_HOME/.gemini"
+printf 'stale codex base file\n' > "$TEST_HOME/.codex/AGENTS.md"
+printf 'stale claude base file\n' > "$TEST_HOME/.claude/CLAUDE.md"
+printf 'stale gemini base file\n' > "$TEST_HOME/.gemini/GEMINI.md"
+
 HOME="$TEST_HOME" bash "$INSTALL_SCRIPT" --platform all >/dev/null 2>&1
 
 if [ ! -d "$TEST_HOME/.agents/skills/my-skills" ]; then
     echo "[FAIL] install.sh did not create the central my-skills directory under ~/.agents/skills"
+    exit 1
+fi
+
+if ! cmp -s "$REPO_ROOT/AGENTS.md" "$TEST_HOME/.codex/AGENTS.md"; then
+    echo "[FAIL] install.sh did not overwrite the Codex base AGENTS.md file"
+    exit 1
+fi
+
+if ! cmp -s "$REPO_ROOT/CLAUDE.md" "$TEST_HOME/.claude/CLAUDE.md"; then
+    echo "[FAIL] install.sh did not overwrite the Claude base CLAUDE.md file"
+    exit 1
+fi
+
+if ! cmp -s "$REPO_ROOT/GEMINI.md" "$TEST_HOME/.gemini/GEMINI.md"; then
+    echo "[FAIL] install.sh did not overwrite the Gemini base GEMINI.md file"
     exit 1
 fi
 

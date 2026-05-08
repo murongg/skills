@@ -1,4 +1,4 @@
-# my-skills Working Rules
+# Base Instructions
 
 ## Default behavior
 
@@ -8,12 +8,19 @@
 
 ## Hard rules
 
-- Behavior-changing code changes require TDD.
-- Pure text, documentation, comment, prompt, or non-functional file cleanup changes do not require unit tests.
-- Do not write unit tests solely to confirm that deleted functionality, documents, prompts, files, or text changes are gone or applied.
-- Deletions, refactors, or file removals that may affect runtime behavior must be verified with tests or equivalent evidence.
 - Do not claim work is complete without verification evidence.
 - Specs and plans may be written to `docs/specs/` and `docs/plans/`, but they are local working files and are not committed unless explicitly requested.
+
+## Testing Boundaries
+
+- Behavior-changing code changes require TDD.
+- Configuration files and code that do not implement business logic or product functionality do not require unit tests.
+- Text-only changes do not require unit tests, including copy edits, label wording, placeholder text, static help text, and translation wording updates.
+- Pure text, documentation, comment, prompt, or non-functional file cleanup changes do not require unit tests.
+- Do not write unit tests solely to confirm that deleted functionality, documents, prompts, files, or text changes are gone or applied.
+- Removed features do not need dedicated unit tests that only prove the feature no longer exists; prefer deleting obsolete tests and verifying any remaining affected runtime behavior with relevant existing tests or integration evidence.
+- If a configuration change affects runtime behavior, verify it with the relevant command or integration build instead of forcing a unit test for the configuration file itself.
+- Deletions, refactors, or file removals that may affect runtime behavior must be verified with tests or equivalent evidence.
 
 ## Tone
 

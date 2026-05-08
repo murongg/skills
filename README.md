@@ -76,6 +76,7 @@ What it does:
 - builds a generated clean skills tree that combines your core skills with selected vendored specialist skills
 - installs that clean skills tree as a real directory under `~/.agents/skills/my-skills`
 - links Claude Code and OpenCode to that central directory
+- overwrites the selected platform base instruction files with this repo's `AGENTS.md`, `CLAUDE.md`, and `GEMINI.md` content
 - never overwrites an existing non-symlink directory
 - stops with a clear error if the target path already exists and points somewhere else
 
@@ -83,6 +84,11 @@ Installed locations:
 - Codex / Codex CLI: real directory at `~/.agents/skills/my-skills`
 - OpenCode: symlink at `~/.config/opencode/skills/my-skills`
 - Claude Code: symlink at `~/.claude/skills/my-skills`
+
+Base instruction files:
+- Codex / Codex CLI: `~/.codex/AGENTS.md`
+- Claude Code: `~/.claude/CLAUDE.md`
+- Gemini CLI: `~/.gemini/GEMINI.md` when installing `--platform all`
 
 If you cloned the repo somewhere other than `~/my-skills`, the installer still works. It builds the generated skills tree from the current repo, copies it into `~/.agents/skills/my-skills`, and then points the other platform directories at that central install.
 
