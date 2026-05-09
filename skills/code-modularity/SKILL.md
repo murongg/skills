@@ -55,6 +55,7 @@ If the answer is weak, defer the refactor and keep the main task focused.
 Prefer small, local improvements:
 
 - extract a cohesive function
+- when the same meaningful logic is used in two or more places, extract it into a single named function unless the duplication is trivial, semantically different, intentionally clearer inline, or clearly temporary
 - extract a module around one responsibility
 - move logic closer to the data owner or domain owner
 - use `naming-conventions` when naming extracted files, folders, modules, or components
