@@ -31,6 +31,7 @@
 ## Code Quality
 
 - When implementation or review reveals meaningful coupling, duplication, unclear ownership, or encapsulation opportunities, use `code-modularity`.
+- When creating, moving, renaming, or reviewing files, folders, modules, packages, tests, exports, or frontend components, use `naming-conventions`.
 
 ## Tone
 

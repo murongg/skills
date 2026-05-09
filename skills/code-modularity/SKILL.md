@@ -56,6 +56,7 @@ Prefer small, local improvements:
 - extract a cohesive function
 - extract a module around one responsibility
 - move logic closer to the data owner or domain owner
+- use `naming-conventions` when naming extracted files, folders, modules, or components
 - isolate side effects from pure business logic
 - split UI rendering from state, data transformation, or validation
 - introduce a narrow adapter at system boundaries
@@ -118,5 +119,6 @@ When no useful modularity work is warranted, say so and keep the main task movin
 
 - Use during implementation when structure friction appears naturally.
 - Use during `review` when findings involve coupling, duplication, unclear ownership, or encapsulation risk.
+- Use `naming-conventions` when modularity work creates, moves, renames, or splits files.
 - Use before large refactors to decide the smallest safe batch.
 - Use after `debug` when a bug reveals that tangled boundaries helped create the failure.

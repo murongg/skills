@@ -1,0 +1,4 @@
+interface:
+  display_name: "Naming Conventions"
+  short_description: "Name files, folders, and modules clearly"
+  default_prompt: "Use $naming-conventions to choose concise one-word-first names for files, folders, modules, and frontend components."
