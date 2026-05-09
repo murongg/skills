@@ -80,7 +80,7 @@ Colocate first until reuse or boundary pressure is real.
 
 ## Shared Code
 
-Shared code must have a purpose, owner, and audience.
+Shared code is allowed when it has a purpose, owner, audience, and public API.
 
 Prefer scoped packages:
 
@@ -93,16 +93,27 @@ packages/validation
 packages/logger
 ```
 
-Avoid catch-all packages:
+Use a shared package for genuinely cross-cutting public code that multiple apps or packages depend on:
 
 ```text
 packages/shared
+```
+
+If using `packages/shared`, keep it curated:
+
+- expose code through public exports
+- group by clear subdomains or entry points
+- document what belongs there
+- reject app-specific code
+- split into scoped packages when one area becomes large or has different ownership
+
+Avoid vague catch-all packages unless the repository already gives them precise meaning:
+
+```text
 packages/common
 packages/utils
 packages/core
 ```
-
-Use a broad shared package only when the repository already defines exactly what belongs there.
 
 ## Package Metadata
 
