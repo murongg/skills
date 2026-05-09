@@ -32,6 +32,7 @@
 
 - When implementation or review reveals meaningful coupling, duplication, unclear ownership, or encapsulation opportunities, use `code-modularity`.
 - When creating, moving, renaming, or reviewing files, folders, modules, packages, tests, exports, or frontend components, use `naming-conventions`.
+- When creating, moving, or reviewing monorepo apps, packages, libraries, workspace boundaries, shared code, or cross-package imports, use `monorepo-structure`.
 
 ## Tone
 

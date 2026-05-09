@@ -155,6 +155,7 @@ Do not rename when:
 
 - Use during `code-modularity` when extracting, moving, or splitting files.
 - Use during `review` when naming harms readability, ownership, or future maintenance.
+- Use during `monorepo-structure` when naming apps, packages, libraries, shared config, or workspace folders.
 - Use when creating frontend components to enforce PascalCase component names.
 - Use when introducing tests to keep test names aligned with source names.
 

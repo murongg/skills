@@ -23,6 +23,7 @@ Inspect higher-risk work for defects, regressions, missing tests, and scope drif
 4. unnecessary scope expansion
 5. meaningful coupling, duplication, or ownership-boundary risks
 6. naming that obscures ownership, purpose, or maintainability
+7. monorepo package boundary, workspace, or cross-package dependency risks
 
 Present findings in severity order.
 
@@ -48,6 +49,7 @@ If no findings are discovered, say that explicitly and mention any remaining ris
 - if review finds missing code coverage, route back into `tdd`
 - if review finds meaningful coupling, duplication, unclear ownership, or encapsulation risk, route into `code-modularity`
 - if review finds file, folder, module, package, test, export, or component naming problems, route into `naming-conventions`
+- if review finds monorepo app/package boundary, workspace config, shared package, or cross-package import problems, route into `monorepo-structure`
 - after changes are complete, route into `verify`
 
 ## Anti-patterns

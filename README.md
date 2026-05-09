@@ -32,6 +32,7 @@ Phase 2 adds:
 - `git-branch-management`
 - `code-modularity`
 - `naming-conventions`
+- `monorepo-structure`
 
 Specialized guidance can also be layered in without bloating the core workflow. This repo vendors frontend guidance and exposes it through a thin bridge skill:
 - `frontend-specialist`
@@ -151,6 +152,8 @@ Typical flows:
   `code-modularity`
 - File, folder, and component naming:
   `naming-conventions`
+- Monorepo apps, packages, and boundaries:
+  `monorepo-structure`
 
 Bug handling rule:
 
@@ -190,5 +193,5 @@ Use `frontend-specialist` when React, Next.js, or broader frontend work needs de
 ## Current Status
 
 - Phase 1 is implemented: `use-my-skills`, `triage`, `tdd`, `debug`, `verify`
-- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`, `git-commit-message`, `git-branch-management`, `code-modularity`, `naming-conventions`
+- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`, `git-commit-message`, `git-branch-management`, `code-modularity`, `naming-conventions`, `monorepo-structure`
 - Phase 3 is still open: `workspace`, richer platform docs, and broader testing

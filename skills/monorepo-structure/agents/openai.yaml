@@ -1,0 +1,4 @@
+interface:
+  display_name: "Monorepo Structure"
+  short_description: "Govern apps, packages, and boundaries"
+  default_prompt: "Use $monorepo-structure to design or review package boundaries, workspace layout, and cross-package dependencies."

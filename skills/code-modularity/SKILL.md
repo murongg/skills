@@ -18,6 +18,7 @@ Use this skill when implementation or review reveals:
 - the same logic appears in multiple places
 - a function, class, component, or module has multiple responsibilities
 - modules reach into each other's internals
+- package or workspace boundaries are unclear in a monorepo
 - business logic is mixed with IO, UI, framework, persistence, or transport code
 - changes require editing many unrelated files
 - tests are hard to write because dependencies are tangled
@@ -120,5 +121,6 @@ When no useful modularity work is warranted, say so and keep the main task movin
 - Use during implementation when structure friction appears naturally.
 - Use during `review` when findings involve coupling, duplication, unclear ownership, or encapsulation risk.
 - Use `naming-conventions` when modularity work creates, moves, renames, or splits files.
+- Use `monorepo-structure` when modularity work crosses app, package, workspace, or public export boundaries.
 - Use before large refactors to decide the smallest safe batch.
 - Use after `debug` when a bug reveals that tangled boundaries helped create the failure.
