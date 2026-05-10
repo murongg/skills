@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Guidelines"
+  short_description: "Write and review pull requests clearly"
+  default_prompt: "Use $pr-guidelines to draft or review a clear pull request title, body, scope, and validation notes."

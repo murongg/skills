@@ -30,6 +30,7 @@ Phase 2 adds:
 - `review`
 - `git-commit-message`
 - `git-branch-management`
+- `pr-guidelines`
 - `code-modularity`
 - `naming-conventions`
 - `monorepo-structure`
@@ -148,6 +149,8 @@ Typical flows:
   `git-commit-message`
 - Branch management:
   `git-branch-management`
+- Pull request drafting and readiness:
+  `pr-guidelines`
 - Modularity and decoupling:
   `code-modularity`
 - File, folder, and component naming:
@@ -193,5 +196,5 @@ Use `frontend-specialist` when React, Next.js, or broader frontend work needs de
 ## Current Status
 
 - Phase 1 is implemented: `use-my-skills`, `triage`, `tdd`, `debug`, `verify`
-- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`, `git-commit-message`, `git-branch-management`, `code-modularity`, `naming-conventions`, `monorepo-structure`
+- Phase 2 is implemented: `brainstorm`, `plan`, `execute`, `review`, `git-commit-message`, `git-branch-management`, `pr-guidelines`, `code-modularity`, `naming-conventions`, `monorepo-structure`
 - Phase 3 is still open: `workspace`, richer platform docs, and broader testing

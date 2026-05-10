@@ -79,6 +79,11 @@ if [ ! -f "$TEST_HOME/.agents/skills/my-skills/git-branch-management/SKILL.md" ]
     exit 1
 fi
 
+if [ ! -f "$TEST_HOME/.agents/skills/my-skills/pr-guidelines/SKILL.md" ]; then
+    echo "[FAIL] central my-skills install does not include the pr-guidelines skill"
+    exit 1
+fi
+
 if [ ! -f "$TEST_HOME/.agents/skills/my-skills/code-modularity/SKILL.md" ]; then
     echo "[FAIL] central my-skills install does not include the code-modularity skill"
     exit 1
