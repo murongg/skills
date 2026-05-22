@@ -14,6 +14,7 @@
 ## Testing Boundaries
 
 - Behavior-changing code changes require TDD.
+- Unit tests must use mock or synthetic data only; never use real-world personal, customer, production, proprietary, or identifiable content as test cases, fixtures, or assertions.
 - Configuration files and code that do not implement business logic or product functionality do not require unit tests.
 - Text-only changes do not require unit tests, including copy edits, label wording, placeholder text, static help text, and translation wording updates.
 - Pure text, documentation, comment, prompt, or non-functional file cleanup changes do not require unit tests.
