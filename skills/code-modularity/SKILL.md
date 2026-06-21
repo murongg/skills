@@ -75,6 +75,11 @@ Avoid:
 - merging unrelated similarities into a shared utility
 - changing behavior while claiming the work is only structural
 
+## Commenting
+
+- When implementing complex logic, add concise comments where they clarify intent, tradeoffs, invariants, edge cases, or non-obvious constraints.
+- Avoid comments that merely restate the code.
+
 ## Working Modes
 
 Review-only mode:
