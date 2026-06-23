@@ -77,8 +77,9 @@ Avoid:
 
 ## Commenting
 
-- When implementing complex logic, add concise comments where they clarify intent, tradeoffs, invariants, edge cases, or non-obvious constraints.
-- Avoid comments that merely restate the code.
+- Before finishing a complex production code change, review the changed logic and add concise comments for non-obvious intent, tradeoffs, invariants, edge cases, async or concurrency behavior, caching, permissions, parsing, date/time handling, or external system assumptions.
+- If no comment is added, make sure the code is self-explanatory through naming, structure, or extraction.
+- Do not add comments that merely restate the code.
 
 ## Working Modes
 

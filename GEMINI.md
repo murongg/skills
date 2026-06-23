@@ -33,7 +33,7 @@
 ## Code Quality
 
 - When implementation or review reveals meaningful coupling, duplication, unclear ownership, or encapsulation opportunities, use `code-modularity`.
-- When implementing complex logic, add concise comments where they clarify intent, tradeoffs, invariants, edge cases, or non-obvious constraints; avoid comments that merely restate the code.
+- Before finishing a complex production code change, review the changed logic and add concise comments for non-obvious intent, tradeoffs, invariants, edge cases, async or concurrency behavior, caching, permissions, parsing, date/time handling, or external system assumptions; if no comment is added, make sure the code is self-explanatory through naming, structure, or extraction.
 - When creating, moving, renaming, or reviewing files, folders, modules, packages, tests, exports, or frontend components, use `naming-conventions`.
 - When creating, moving, or reviewing monorepo apps, packages, libraries, workspace boundaries, shared code, or cross-package imports, use `monorepo-structure`.
 
