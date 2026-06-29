@@ -26,6 +26,7 @@
 ## Git
 
 - When creating, switching, syncing, renaming, deleting, or publishing git branches, use `git-branch-management`.
+- When using git worktrees, prefer the project-root `.worktree/` directory and keep `.worktree/` gitignored.
 - When drafting, rewriting, reviewing, or choosing a git commit message, use `git-commit-message`.
 - When drafting, opening, updating, reviewing, or preparing pull requests, use `pr-guidelines`.
 - If the user provides an exact commit message, preserve it unless it conflicts with the requested convention or repository rules.

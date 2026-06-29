@@ -5,3 +5,4 @@ docs/plans/.gitkeep
 .DS_Store
 node_modules/
 .generated
+.worktree/
