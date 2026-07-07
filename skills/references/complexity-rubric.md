@@ -25,8 +25,8 @@ Examples:
 Default behavior:
 - short structured analysis
 - direct execution
-- TDD if code changes
-- verify before completion
+- preferred TDD if code changes
+- preferred verification before completion
 
 ## L2
 
@@ -40,9 +40,9 @@ Examples:
 Default behavior:
 - short structured analysis
 - direct execution or a short internal plan
-- TDD for code changes
-- optional review
-- verify before completion
+- preferred TDD for code changes
+- optional preferred review
+- preferred verification before completion
 
 ## L3
 
@@ -54,11 +54,11 @@ Examples:
 - cross-module work
 
 Default behavior:
-- brainstorm
-- plan
-- TDD where code changes occur
-- review
-- verify
+- preferred brainstorming skill
+- preferred planning skill
+- preferred TDD where code changes occur
+- preferred review
+- preferred verification
 
 ## L4
 
@@ -71,8 +71,8 @@ Examples:
 
 Default behavior:
 - workspace if needed
-- brainstorm
-- plan
-- TDD
-- review
-- verify
+- preferred brainstorming skill
+- preferred planning skill
+- preferred TDD
+- preferred review
+- preferred verification

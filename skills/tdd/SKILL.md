@@ -5,6 +5,10 @@ description: Use when changing production code, fixing behavior in code, or maki
 
 # Skill: tdd
 
+## Preference note
+
+If `superpowers:test-driven-development` is available locally, prefer that skill. Use this `tdd` skill as the fallback.
+
 TDD is mandatory for code changes.
 
 ## Rule

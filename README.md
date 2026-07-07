@@ -140,11 +140,11 @@ If a platform reports duplicate skill warnings, that usually means the same `my-
 Typical flows:
 
 - Small bugfix:
-  `use-my-skills -> triage -> tdd -> execute -> verify`
+  `use-my-skills -> triage -> preferred TDD skill -> execute -> preferred verification skill`
 - Debugging a failure:
-  `use-my-skills -> triage -> debug -> tdd -> execute -> verify`
+  `use-my-skills -> triage -> preferred debugging skill -> preferred TDD skill -> execute -> preferred verification skill`
 - Ambiguous feature work:
-  `use-my-skills -> triage -> brainstorm -> plan -> execute -> review -> verify`
+  `use-my-skills -> triage -> preferred brainstorming skill -> preferred planning skill -> execute -> preferred review skill -> preferred verification skill`
 - Commit message drafting:
   `git-commit-message`
 - Branch management:
@@ -161,7 +161,24 @@ Typical flows:
 Bug handling rule:
 
 - If a bug is clear and well-scoped, `my-skills` should try fixing it directly instead of pausing just to ask for permission.
-- If the cause is unclear, it should route into `debug` first.
+- If the cause is unclear, it should route into the preferred debugging skill first.
+
+Superpowers preference rule:
+
+- If a matching Superpowers skill is available locally, prefer it. Otherwise, fall back to the local `my-skills` equivalent.
+- Debugging: `superpowers:systematic-debugging` -> `debug`
+- TDD: `superpowers:test-driven-development` -> `tdd`
+- Verification: `superpowers:verification-before-completion` -> `verify`
+- Brainstorming: `superpowers:brainstorming` -> `brainstorm`
+- Planning: `superpowers:writing-plans` -> `plan`
+- Review: `superpowers:requesting-code-review` -> `review`
+- Review feedback: `superpowers:receiving-code-review` -> `review`/`pr-guidelines`
+- Written plan execution: `superpowers:executing-plans` -> `execute`
+- Independent plan tasks: `superpowers:subagent-driven-development` -> `execute`
+- Parallel independent tasks: `superpowers:dispatching-parallel-agents` -> direct execution
+- Worktrees: `superpowers:using-git-worktrees` -> `git-branch-management`
+- Branch finishing: `superpowers:finishing-a-development-branch` -> `pr-guidelines`/`git-branch-management`
+- Skill authoring or editing: `superpowers:writing-skills`
 
 ## Project Layout
 

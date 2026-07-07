@@ -5,6 +5,10 @@ description: Use when requirements are ambiguous, multiple viable approaches exi
 
 # Skill: brainstorm
 
+## Preference note
+
+If `superpowers:brainstorming` is available locally, prefer that skill for ambiguous work or creative feature work with meaningful design choices. Use this `brainstorm` skill as the fallback or for lighter clarification.
+
 ## Purpose
 
 Use this skill when the task is too ambiguous for direct execution.

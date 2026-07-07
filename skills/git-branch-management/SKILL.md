@@ -5,6 +5,10 @@ description: Use when creating, switching, renaming, syncing, publishing, tracki
 
 # Skill: git-branch-management
 
+## Preference note
+
+If git worktree setup is needed and `superpowers:using-git-worktrees` is available locally, prefer that skill. If implementation is complete, tests pass, and the next question is merge, PR, or cleanup strategy, prefer `superpowers:finishing-a-development-branch` when available. Use this `git-branch-management` skill for ordinary branch operations or as the fallback.
+
 ## Purpose
 
 Manage git branches safely and predictably.

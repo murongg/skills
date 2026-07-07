@@ -5,6 +5,10 @@ description: Use when work spans multiple steps, files, or execution passes and 
 
 # Skill: plan
 
+## Preference note
+
+If `superpowers:writing-plans` is available in the local skill list, prefer that skill for explicit multi-step planning. Use this `plan` skill as the fallback when Superpowers is unavailable.
+
 ## Purpose
 
 Use this skill when the work is clearly multi-step and should be broken down before implementation.
@@ -21,8 +25,8 @@ Use this skill when the work is clearly multi-step and should be broken down bef
 - break the work into concrete steps
 - keep the plan as short as the task allows
 - include verification steps
-- use `plan` before execution for complex features
-- route code-changing implementation through `tdd`
+- use the preferred planning skill before execution for complex features
+- route code-changing implementation through the preferred TDD skill
 
 ## Planning discipline
 

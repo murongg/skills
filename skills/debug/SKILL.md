@@ -5,13 +5,17 @@ description: Use when there is a bug, failing test, unexpected behavior, or runt
 
 # Skill: debug
 
+## Preference note
+
+If `superpowers:systematic-debugging` is available locally, prefer that skill for bugs, failing tests, unexpected behavior, and runtime errors. Use this `debug` skill as the fallback.
+
 ## Purpose
 
 Debug from evidence instead of guessing.
 
 ## Fast-path exception
 
-Do not force this skill when the bug is already clear, narrowly scoped, and ready for a direct fix. In that case, fix it directly and still use `tdd` for code changes plus `verify` before completion.
+Do not force this skill when the bug is already clear, narrowly scoped, and ready for a direct fix. In that case, fix it directly and still use the preferred TDD skill for code changes plus the preferred verification skill before completion.
 
 ## Required sequence
 
@@ -19,8 +23,8 @@ Do not force this skill when the bug is already clear, narrowly scoped, and read
 2. Identify how to reproduce it.
 3. Gather evidence from logs, tests, or runtime behavior.
 4. Identify the most likely root cause.
-5. If the fix requires code changes, route into `tdd` before implementing the fix.
-6. Route into `verify` before claiming the issue is solved.
+5. If the fix requires code changes, route into the preferred TDD skill before implementing the fix.
+6. Route into the preferred verification skill before claiming the issue is solved.
 
 ## Minimum bar before fixing
 

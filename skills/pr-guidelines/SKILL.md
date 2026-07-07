@@ -5,6 +5,10 @@ description: Use when drafting, opening, updating, reviewing, or preparing pull 
 
 # Skill: pr-guidelines
 
+## Preference note
+
+If receiving code review feedback, prefer `superpowers:receiving-code-review` when it is available locally. If implementation is complete, tests pass, and the next question is merge, PR, or cleanup strategy, prefer `superpowers:finishing-a-development-branch` when available. Use this `pr-guidelines` skill for PR drafting, readiness, and fallback review workflow.
+
 ## Purpose
 
 Make pull requests small, reviewable, honest, and easy to merge.

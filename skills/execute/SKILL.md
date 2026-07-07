@@ -9,6 +9,10 @@ description: Use when the task is already understood well enough to implement di
 
 Use this skill to move from understanding into implementation.
 
+## Preference note
+
+If a written implementation plan exists and `superpowers:executing-plans` is available locally, prefer that skill. If the written plan contains independent implementation tasks and `superpowers:subagent-driven-development` is available locally, prefer that skill. Use this `execute` skill for direct execution or as the fallback.
+
 ## When to use it
 
 - the task is already clear enough to start
@@ -16,7 +20,7 @@ Use this skill to move from understanding into implementation.
 - a written plan already exists
 - the next step is implementation, not more discussion
 
-Do not use this skill as the first step for complex features. Route those through `plan` before execution.
+Do not use this skill as the first step for complex features. Route those through the preferred planning skill before execution.
 
 ## Core rule
 
@@ -29,11 +33,11 @@ Prefer:
 
 ## Execution rules
 
-- If code changes, route through `tdd`.
-- If the work is a complex feature and no plan exists yet, route into `plan` before continuing.
-- If the work reveals an unclear bug, route back into `debug`.
-- If the work reveals missing design clarity, route back into `brainstorm` or `plan`.
-- Before claiming completion, route into `verify`.
+- If code changes, route through the preferred TDD skill.
+- If the work is a complex feature and no plan exists yet, route into `superpowers:writing-plans` when it is available locally; otherwise route into `plan`.
+- If the work reveals an unclear bug, route back into the preferred debugging skill.
+- If the work reveals missing design clarity, route back into the preferred brainstorming or planning skill.
+- Before claiming completion, route into the preferred verification skill.
 
 ## Checkpoint rule
 

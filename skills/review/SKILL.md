@@ -5,6 +5,10 @@ description: Use when a change is broad, higher-risk, or explicitly needs inspec
 
 # Skill: review
 
+## Preference note
+
+If `superpowers:requesting-code-review` is available locally, prefer it for major feature completion, merge readiness, and high-risk changes. If addressing external review feedback, prefer `superpowers:receiving-code-review` when available. Use this `review` skill as the fallback or for lighter in-progress review.
+
 ## Purpose
 
 Inspect higher-risk work for defects, regressions, missing tests, and scope drift.
@@ -45,12 +49,12 @@ If no findings are discovered, say that explicitly and mention any remaining ris
 
 ## Integration rules
 
-- if review finds a likely bug, route back into `debug`
-- if review finds missing code coverage, route back into `tdd`
+- if review finds a likely bug, route back into the preferred debugging skill
+- if review finds missing code coverage, route back into the preferred TDD skill
 - if review finds meaningful coupling, duplication, unclear ownership, or encapsulation risk, route into `code-modularity`
 - if review finds file, folder, module, package, test, export, or component naming problems, route into `naming-conventions`
 - if review finds monorepo app/package boundary, workspace config, shared package, or cross-package import problems, route into `monorepo-structure`
-- after changes are complete, route into `verify`
+- after changes are complete, route into the preferred verification skill
 
 ## Anti-patterns
 

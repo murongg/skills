@@ -101,8 +101,8 @@ Implementation mode:
 - Pure movement or extraction with no intended behavior change still needs equivalent verification.
 - If tests exist, run the narrowest relevant tests before and after the refactor.
 - If no tests exist, use the smallest relevant build, typecheck, lint, or runtime check and state what remains unverified.
-- If the refactor exposes a likely bug, route into `debug`.
-- If the refactor requires new behavior coverage, route into `tdd`.
+- If the refactor exposes a likely bug, route into the preferred debugging skill.
+- If the refactor requires new behavior coverage, route into the preferred TDD skill.
 
 ## Output Format
 

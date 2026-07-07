@@ -191,7 +191,7 @@ When proposing monorepo changes, include:
 - Config/package metadata updates:
 - Verification:
 
-Prefer one small boundary change at a time. If the change is broad, route into `plan`.
+Prefer one small boundary change at a time. If the change is broad, route into the preferred planning skill.
 
 ## Hard Rules
 

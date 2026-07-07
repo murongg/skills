@@ -5,6 +5,10 @@ description: Use when work appears complete and you need fresh evidence from tes
 
 # Skill: verify
 
+## Preference note
+
+If `superpowers:verification-before-completion` is available locally, prefer that skill. Use this `verify` skill as the fallback.
+
 ## Purpose
 
 Require evidence before claiming work is complete.

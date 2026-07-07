@@ -28,10 +28,14 @@ Add this only when needed:
 ## Decision rules
 
 - L0: answer or act directly
-- L1: direct execution, TDD if code changes, verify at the end
-- L2: direct execution or short internal plan, TDD if code changes, optional review, verify at the end
-- L3: brainstorm and plan before implementation
+- L1: direct execution, preferred TDD if code changes, preferred verification at the end
+- L2: direct execution or short internal plan, preferred TDD if code changes, optional preferred review, preferred verification at the end
+- L3: preferred brainstorming and planning before implementation
 - L4: isolated workspace if helpful, then full escalated workflow
+
+## Superpowers preference
+
+Use local Superpowers equivalents when available, then fall back to `my-skills`: `superpowers:systematic-debugging` -> `debug`, `superpowers:test-driven-development` -> `tdd`, `superpowers:verification-before-completion` -> `verify`, `superpowers:brainstorming` -> `brainstorm`, `superpowers:writing-plans` -> `plan`, and `superpowers:requesting-code-review` -> `review`.
 
 ## Direct-fix bug rule
 
@@ -43,15 +47,15 @@ Use the fast path when all of these are true:
 - the likely change area is narrow
 - the next step is obvious enough to try safely
 
-If those conditions do not hold, switch to `debug`.
+If those conditions do not hold, switch to the preferred debugging skill.
 
 ## Routing rules
 
-- Code change -> `tdd`
-- Clear, well-scoped bug with a concrete symptom -> direct execution, then `tdd` if code changes, then `verify`
-- Bug, failing test, error, abnormal behavior with unclear cause -> `debug`
-- Ambiguous or broad work -> `brainstorm`, then `plan`
-- Completion claim -> `verify`
+- Code change -> preferred TDD skill
+- Clear, well-scoped bug with a concrete symptom -> direct execution, then preferred TDD if code changes, then preferred verification
+- Bug, failing test, error, abnormal behavior with unclear cause -> preferred debugging skill
+- Ambiguous or broad work -> preferred brainstorming skill, then preferred planning skill
+- Completion claim -> preferred verification skill
 
 ## Red flags
 

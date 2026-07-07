@@ -8,12 +8,12 @@
 
 ## Hard rules
 
-- Do not claim work is complete without verification evidence.
+- Do not claim work is complete without verification evidence; use `superpowers:verification-before-completion` when it is available locally, otherwise use `verify`.
 - Specs and plans may be written to `docs/specs/` and `docs/plans/`, but they are local working files and are not committed unless explicitly requested.
 
 ## Testing Boundaries
 
-- Behavior-changing code changes require TDD.
+- Behavior-changing code changes require TDD; use `superpowers:test-driven-development` when it is available locally, otherwise use `tdd`.
 - Unit tests must use mock or synthetic data only; never use real-world personal, customer, production, proprietary, or identifiable content as test cases, fixtures, or assertions.
 - Configuration files and code that do not implement business logic or product functionality do not require unit tests.
 - Text-only changes do not require unit tests, including copy edits, label wording, placeholder text, static help text, and translation wording updates.
@@ -26,9 +26,11 @@
 ## Git
 
 - When creating, switching, syncing, renaming, deleting, or publishing git branches, use `git-branch-management`.
-- When using git worktrees, prefer the project-root `.worktree/` directory and keep `.worktree/` gitignored.
+- When using git worktrees, use `superpowers:using-git-worktrees` when it is available locally; prefer the project-root `.worktree/` directory and keep `.worktree/` gitignored.
 - When drafting, rewriting, reviewing, or choosing a git commit message, use `git-commit-message`.
 - When drafting, opening, updating, reviewing, or preparing pull requests, use `pr-guidelines`.
+- When receiving code review feedback, use `superpowers:receiving-code-review` when it is available locally before implementing requested changes.
+- When implementation is complete, tests pass, and merge/PR/cleanup strategy is the question, use `superpowers:finishing-a-development-branch` when it is available locally.
 - If the user provides an exact commit message, preserve it unless it conflicts with the requested convention or repository rules.
 
 ## Code Quality
@@ -48,6 +50,10 @@
 
 ## Escalation skills
 
-- Use `brainstorm` when requirements are ambiguous or there are multiple viable approaches.
-- Use `plan` when work is clearly multi-step and benefits from explicit task breakdown.
-- Use `review` before completion for complex or high-risk changes.
+- Use `superpowers:systematic-debugging` when it is available locally for unclear bugs, failures, or abnormal behavior; otherwise use `debug`.
+- Use `superpowers:brainstorming` when it is available locally for ambiguous work or creative feature work with meaningful design choices; otherwise use `brainstorm`.
+- Use `superpowers:writing-plans` when it is available locally and work is clearly multi-step and benefits from explicit task breakdown; otherwise use `plan`.
+- Use `superpowers:requesting-code-review` when it is available locally before completion for complex or high-risk changes; otherwise use `review`.
+- Use `superpowers:writing-skills` when it is available locally for creating or editing skills.
+- Use `superpowers:dispatching-parallel-agents` when it is available locally for 2+ independent tasks that can run without shared state.
+- Use `superpowers:subagent-driven-development` when it is available locally for executing written plans with independent implementation tasks.
