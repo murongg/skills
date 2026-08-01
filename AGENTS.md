@@ -37,6 +37,8 @@
 
 - Prefer the simplest change that fully solves the problem. Before adding code, check whether removing obsolete logic, simplifying existing behavior, or reusing an existing mechanism can achieve the same result.
 - Simplicity means reducing conceptual complexity, not merely minimizing lines of code. Do not replace clear code with clever or overly compressed code.
+- Do not force a feature into an unsuitable design by accumulating special cases, duplicated logic, proliferating flags, cross-module dependencies, or workaround layers. If the smallest viable implementation would materially increase coupling or violate ownership boundaries, reassess the requirement and design before proceeding. Prefer a scoped structural improvement that resolves the underlying mismatch, and request direction before undertaking a broader refactor.
+- When a temporary workaround is explicitly necessary, isolate it, document why it exists and the conditions for removing it, and do not allow other code to depend on it as a new architectural pattern.
 - Do not simplify by weakening required behavior, correctness, security, validation, error handling, accessibility, compatibility, or observability.
 - Remove code only after confirming that it is obsolete, redundant, or unnecessary. Preserve public APIs, persisted data compatibility, and intentional safeguards unless the task explicitly authorizes changing them.
 - Keep simplification changes scoped to the task, and verify any behavior-affecting deletion with relevant tests or equivalent runtime evidence.
