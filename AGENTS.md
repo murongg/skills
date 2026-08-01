@@ -35,6 +35,11 @@
 
 ## Code Quality
 
+- Prefer the simplest change that fully solves the problem. Before adding code, check whether removing obsolete logic, simplifying existing behavior, or reusing an existing mechanism can achieve the same result.
+- Simplicity means reducing conceptual complexity, not merely minimizing lines of code. Do not replace clear code with clever or overly compressed code.
+- Do not simplify by weakening required behavior, correctness, security, validation, error handling, accessibility, compatibility, or observability.
+- Remove code only after confirming that it is obsolete, redundant, or unnecessary. Preserve public APIs, persisted data compatibility, and intentional safeguards unless the task explicitly authorizes changing them.
+- Keep simplification changes scoped to the task, and verify any behavior-affecting deletion with relevant tests or equivalent runtime evidence.
 - When implementation or review reveals meaningful coupling, duplication, unclear ownership, or encapsulation opportunities, use `code-modularity`.
 - After completing and verifying each new feature or bug fix, inspect the changed behavior for fragile or important logic that future edits might accidentally break. Add concise comments immediately next to those critical spots when the reason, invariant, edge case, ordering requirement, external assumption, or regression risk is not obvious from the code. Comments should explain why the code must remain that way, not restate what the code does. Do not add comments for trivial changes, pure text/docs/config cleanup, or code that is already self-explanatory through names, structure, or extraction.
 - When creating, moving, renaming, or reviewing files, folders, modules, packages, tests, exports, or frontend components, use `naming-conventions`.
