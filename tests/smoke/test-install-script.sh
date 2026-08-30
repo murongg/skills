@@ -69,6 +69,36 @@ if [ ! -f "$TEST_HOME/.agents/skills/my-skills/impeccable/SKILL.md" ]; then
     exit 1
 fi
 
+TASTE_SKILLS=(
+    "brandkit"
+    "industrial-brutalist-ui"
+    "gpt-taste"
+    "image-to-code"
+    "imagegen-frontend-mobile"
+    "imagegen-frontend-web"
+    "minimalist-ui"
+    "full-output-enforcement"
+    "redesign-existing-projects"
+    "high-end-visual-design"
+    "stitch-design-taste"
+    "design-taste-frontend-v1"
+    "design-taste-frontend"
+)
+
+for taste_skill in "${TASTE_SKILLS[@]}"; do
+    taste_skill_file="$TEST_HOME/.agents/skills/my-skills/$taste_skill/SKILL.md"
+
+    if [ ! -f "$taste_skill_file" ]; then
+        echo "[FAIL] central my-skills install does not include vendored $taste_skill"
+        exit 1
+    fi
+
+    if ! grep -q "^name: $taste_skill$" "$taste_skill_file"; then
+        echo "[FAIL] vendored $taste_skill directory does not match its SKILL.md name"
+        exit 1
+    fi
+done
+
 if [ ! -f "$TEST_HOME/.agents/skills/my-skills/git-commit-message/SKILL.md" ]; then
     echo "[FAIL] central my-skills install does not include the git-commit-message skill"
     exit 1

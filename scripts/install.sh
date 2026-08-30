@@ -6,7 +6,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPO_URL="${MY_SKILLS_REPO_URL:-https://github.com/murongg/skills.git}"
 
 bootstrap_repo_if_needed() {
-    if [ -d "$REPO_ROOT/skills" ] && [ -d "$REPO_ROOT/vendor/vercel-skills" ] && [ -d "$REPO_ROOT/vendor/ui-ux-pro-max" ] && [ -d "$REPO_ROOT/vendor/impeccable" ]; then
+    if [ -d "$REPO_ROOT/skills" ] && [ -d "$REPO_ROOT/vendor/vercel-skills" ] && [ -d "$REPO_ROOT/vendor/ui-ux-pro-max" ] && [ -d "$REPO_ROOT/vendor/impeccable" ] && [ -d "$REPO_ROOT/vendor/taste-skill" ]; then
         return 0
     fi
 
@@ -37,6 +37,19 @@ VENDORED_SKILLS=(
     "vendor/vercel-skills/skills/deploy-to-vercel:deploy-to-vercel"
     "vendor/ui-ux-pro-max/.claude/skills/ui-ux-pro-max:ui-ux-pro-max"
     "vendor/impeccable/.agents/skills/impeccable:impeccable"
+    "vendor/taste-skill/skills/brandkit:brandkit"
+    "vendor/taste-skill/skills/brutalist-skill:industrial-brutalist-ui"
+    "vendor/taste-skill/skills/gpt-tasteskill:gpt-taste"
+    "vendor/taste-skill/skills/image-to-code-skill:image-to-code"
+    "vendor/taste-skill/skills/imagegen-frontend-mobile:imagegen-frontend-mobile"
+    "vendor/taste-skill/skills/imagegen-frontend-web:imagegen-frontend-web"
+    "vendor/taste-skill/skills/minimalist-skill:minimalist-ui"
+    "vendor/taste-skill/skills/output-skill:full-output-enforcement"
+    "vendor/taste-skill/skills/redesign-skill:redesign-existing-projects"
+    "vendor/taste-skill/skills/soft-skill:high-end-visual-design"
+    "vendor/taste-skill/skills/stitch-skill:stitch-design-taste"
+    "vendor/taste-skill/skills/taste-skill-v1:design-taste-frontend-v1"
+    "vendor/taste-skill/skills/taste-skill:design-taste-frontend"
 )
 
 usage() {

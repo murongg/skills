@@ -7,3 +7,6 @@
 [submodule "vendor/impeccable"]
 	path = vendor/impeccable
 	url = https://github.com/pbakaus/impeccable.git
+[submodule "vendor/taste-skill"]
+	path = vendor/taste-skill
+	url = https://github.com/Leonxlnx/taste-skill.git

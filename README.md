@@ -35,7 +35,8 @@ Phase 2 adds:
 - `naming-conventions`
 - `monorepo-structure`
 
-Specialized guidance can also be layered in without bloating the core workflow. This repo vendors frontend guidance and exposes it through a thin bridge skill:
+Specialized guidance can also be layered in without bloating the core workflow. This repo vendors frontend guidance, including the Taste Skill suite, and exposes framework guidance through a thin bridge skill:
+
 - `frontend-specialist`
 
 ## Quick Start
@@ -207,6 +208,22 @@ Selected specialist skills are merged into the generated install tree, including
 - `deploy-to-vercel`
 - `ui-ux-pro-max`
 - `impeccable` (Impeccable's frontend-design skill)
+
+The vendored [Taste Skill](https://github.com/Leonxlnx/taste-skill) suite is also merged into the generated install tree under each skill's official install name:
+
+- `design-taste-frontend`
+- `design-taste-frontend-v1`
+- `gpt-taste`
+- `image-to-code`
+- `redesign-existing-projects`
+- `high-end-visual-design`
+- `full-output-enforcement`
+- `minimalist-ui`
+- `industrial-brutalist-ui`
+- `stitch-design-taste`
+- `imagegen-frontend-web`
+- `imagegen-frontend-mobile`
+- `brandkit`
 
 Use `frontend-specialist` when React, Next.js, or broader frontend work needs deeper specialist guidance, instead of stuffing framework-specific rules into `use-my-skills`, `triage`, or `review`.
 
