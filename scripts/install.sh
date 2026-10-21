@@ -349,7 +349,8 @@ install_ponytail_plugins() {
                 opencode plugin add @dietrichgebert/ponytail
                 ;;
             gemini)
-                installed="$(gemini extensions list --output-format json | node -e '
+                # Gemini emits its extension-list JSON on stderr; pipefail still preserves CLI failures.
+                installed="$(gemini extensions list --output-format json 2>&1 | node -e '
                     const fs = require("fs");
                     const entries = JSON.parse(fs.readFileSync(0, "utf8"));
                     if (!Array.isArray(entries)) throw new Error("Invalid extension list");

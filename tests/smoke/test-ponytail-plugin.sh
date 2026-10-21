@@ -41,9 +41,9 @@ case "$*" in
         ;;
     'extensions list --output-format json')
         if [ -f "$HOME/gemini-installed" ]; then
-            printf '[{"name":"ponytail"}]\n'
+            printf '[{"name":"ponytail"}]\n' >&2
         else
-            printf '[]\n'
+            printf '[]\n' >&2
         fi
         ;;
     'extensions install https://github.com/DietrichGebert/ponytail --consent')
