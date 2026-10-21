@@ -99,6 +99,37 @@ Base instruction files:
 
 If you cloned the repo somewhere other than `~/my-skills`, the installer still works. It builds the generated skills tree from the current repo, copies it into `~/.agents/skills/my-skills`, and then points the other platform directories at that central install.
 
+### Ponytail
+
+Every install includes three skills from the pinned [Ponytail](https://github.com/DietrichGebert/ponytail) submodule:
+
+- `ponytail` — choose the smallest complete implementation
+- `ponytail-review` — review a change and its connected code
+- `ponytail-audit` — audit a whole repository when requested
+
+The entrypoint uses Ponytail alongside this repo's TDD and verification requirements. The upstream skill files are copied unchanged, with their MIT license.
+
+To also install Ponytail's official native plugin, add `--with-ponytail-plugin`:
+
+```bash
+bash scripts/install.sh --platform codex --with-ponytail-plugin
+bash scripts/install.sh --platform claude --with-ponytail-plugin
+bash scripts/install.sh --platform opencode --with-ponytail-plugin
+bash scripts/install.sh --platform all --with-ponytail-plugin
+```
+
+For installation without a local checkout:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/murongg/skills/main/scripts/install.sh | bash -s -- --platform codex --with-ponytail-plugin
+```
+
+The flag calls each selected tool's native plugin manager. `all` includes Codex, Claude Code, OpenCode and Gemini CLI. Node.js and the selected tools' plugin-capable CLIs must already be installed; these requirements are checked before replacing the installed skills tree. Native plugins follow their own package managers and may be newer than the vendored skills.
+
+The native plugin adds automatic rules and mode management where supported. Claude Code also gets Ponytail's Band and local board; see [upstream requirements](https://github.com/DietrichGebert/ponytail#new-in-53-the-band) for supported versions and surfaces. In Codex, review and trust the plugin's hooks through `/hooks`, then start a new chat. Restart other tools after installation. The script leaves host trust decisions and existing user settings to the native plugin managers.
+
+When the native plugin is active, the entrypoint uses it instead of loading the same vendored rules again. A normal install without the flag keeps the three standalone skills and does not invoke any native plugin manager.
+
 ### Manual installation
 
 Manual file copying is intentionally not documented here.
@@ -158,6 +189,10 @@ Typical flows:
   `naming-conventions`
 - Monorepo apps, packages, and boundaries:
   `monorepo-structure`
+- Choosing a simpler implementation:
+  `ponytail` alongside the normal TDD and verification flow
+- Reviewing a change or auditing a repository:
+  `ponytail-review` / `ponytail-audit`
 
 Bug handling rule:
 
@@ -208,6 +243,9 @@ Selected specialist skills are merged into the generated install tree, including
 - `deploy-to-vercel`
 - `ui-ux-pro-max`
 - `impeccable` (Impeccable's frontend-design skill)
+- `ponytail`
+- `ponytail-review`
+- `ponytail-audit`
 
 The vendored [Taste Skill](https://github.com/Leonxlnx/taste-skill) suite is also merged into the generated install tree under each skill's official install name:
 

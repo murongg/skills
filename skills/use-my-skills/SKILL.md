@@ -33,6 +33,14 @@ Default to direct execution for small, clear tasks.
 
 Do not escalate into a formal spec or plan unless the task is ambiguous, broad, risky, or obviously multi-step.
 
+## Ponytail integration
+
+- Before implementing non-trivial code, use `ponytail` to choose the smallest complete approach: reuse existing code, standard-library or platform features, and installed dependencies before adding new code.
+- When the native Ponytail plugin is already active, use its rules and namespaced skills instead of loading the vendored copies again. Respect its selected level, including `off`; do not reactivate it after the user turns it off.
+- Use `ponytail-review` when reviewing a change for bugs and unnecessary complexity. Use `ponytail-audit` when the user asks to audit a whole repository. Keep the local review priorities and the user's requested response language.
+- Ponytail supplements the workflow. Behavior-changing code still requires the preferred TDD skill before implementation, and completion still requires the preferred verification skill. Preserve necessary boundaries and safeguards; correctness, completeness and readability come before line count.
+- The vendored skills provide instructions only. Automatic session hooks, persistent mode switching, and Claude Code's Band and board require the optional native plugin installation.
+
 ## Superpowers preference
 
 When a matching Superpowers skill is available locally, prefer it. Otherwise use the `my-skills` fallback.

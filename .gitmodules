@@ -10,3 +10,6 @@
 [submodule "vendor/taste-skill"]
 	path = vendor/taste-skill
 	url = https://github.com/Leonxlnx/taste-skill.git
+[submodule "vendor/ponytail"]
+	path = vendor/ponytail
+	url = https://github.com/DietrichGebert/ponytail.git

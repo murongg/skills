@@ -6,7 +6,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPO_URL="${MY_SKILLS_REPO_URL:-https://github.com/murongg/skills.git}"
 
 bootstrap_repo_if_needed() {
-    if [ -d "$REPO_ROOT/skills" ] && [ -d "$REPO_ROOT/vendor/vercel-skills" ] && [ -d "$REPO_ROOT/vendor/ui-ux-pro-max" ] && [ -d "$REPO_ROOT/vendor/impeccable" ] && [ -d "$REPO_ROOT/vendor/taste-skill" ]; then
+    if [ -d "$REPO_ROOT/skills" ] && [ -d "$REPO_ROOT/vendor/vercel-skills" ] && [ -d "$REPO_ROOT/vendor/ui-ux-pro-max" ] && [ -d "$REPO_ROOT/vendor/impeccable" ] && [ -d "$REPO_ROOT/vendor/taste-skill" ] && [ -d "$REPO_ROOT/vendor/ponytail" ]; then
         return 0
     fi
 
@@ -37,6 +37,9 @@ VENDORED_SKILLS=(
     "vendor/vercel-skills/skills/deploy-to-vercel:deploy-to-vercel"
     "vendor/ui-ux-pro-max/.claude/skills/ui-ux-pro-max:ui-ux-pro-max"
     "vendor/impeccable/.agents/skills/impeccable:impeccable"
+    "vendor/ponytail/skills/ponytail:ponytail"
+    "vendor/ponytail/skills/ponytail-review:ponytail-review"
+    "vendor/ponytail/skills/ponytail-audit:ponytail-audit"
     "vendor/taste-skill/skills/brandkit:brandkit"
     "vendor/taste-skill/skills/brutalist-skill:industrial-brutalist-ui"
     "vendor/taste-skill/skills/gpt-tasteskill:gpt-taste"
@@ -54,12 +57,15 @@ VENDORED_SKILLS=(
 
 usage() {
     cat <<EOF
-Usage: scripts/install.sh [--platform codex|opencode|claude|all]
+Usage: scripts/install.sh [--platform codex|opencode|claude|all] [--with-ponytail-plugin]
 
-Creates local symlinks so supported tools can discover the skills in this repo.
+Installs the central skills tree and links supported tools to it.
 
 Options:
   --platform <name>   Install for one platform or all platforms (default: all)
+  --with-ponytail-plugin
+                      Also install the official Ponytail plugin for the selected tools
+                      Requires Node.js and each selected tool's plugin-capable CLI
   --help              Show this help text
 
 Supported platforms:
@@ -76,6 +82,8 @@ EOF
 }
 
 TARGET_PLATFORM=""
+INSTALL_PONYTAIL_PLUGIN=false
+PONYTAIL_HOSTS=()
 
 prompt_for_platform() {
     cat <<EOF
@@ -107,6 +115,7 @@ confirm_install() {
 About to install for: $TARGET_PLATFORM
 Core skills source: $SKILLS_SOURCE
 Generated install tree: $GENERATED_SKILLS_DIR
+Install native Ponytail plugin: $INSTALL_PONYTAIL_PLUGIN
 EOF
 
     printf 'Proceed? [y/N]: '
@@ -133,6 +142,10 @@ while [ "$#" -gt 0 ]; do
             TARGET_PLATFORM="$2"
             shift 2
             ;;
+        --with-ponytail-plugin)
+            INSTALL_PONYTAIL_PLUGIN=true
+            shift
+            ;;
         --help|-h)
             usage
             exit 0
@@ -148,6 +161,35 @@ done
 if [ -z "$TARGET_PLATFORM" ]; then
     prompt_for_platform
     confirm_install
+fi
+
+case "$TARGET_PLATFORM" in
+    codex|opencode|claude) PONYTAIL_HOSTS=("$TARGET_PLATFORM") ;;
+    all) PONYTAIL_HOSTS=(codex claude opencode gemini) ;;
+    *) echo "[FAIL] Unsupported platform: $TARGET_PLATFORM" >&2; exit 1 ;;
+esac
+
+# Check optional plugin requirements before overwriting any installed skills.
+if [ "$INSTALL_PONYTAIL_PLUGIN" = true ]; then
+    if ! command -v node >/dev/null 2>&1; then
+        echo "[FAIL] Node.js is required for Ponytail's lifecycle hooks" >&2
+        exit 1
+    fi
+    for plugin_host in "${PONYTAIL_HOSTS[@]}"; do
+        if ! command -v "$plugin_host" >/dev/null 2>&1; then
+            echo "[FAIL] Missing $plugin_host CLI; install it or select a different --platform" >&2
+            exit 1
+        fi
+        case "$plugin_host" in
+            codex|opencode) plugin_command=(plugin add) ;;
+            claude) plugin_command=(plugin install) ;;
+            gemini) plugin_command=(extensions install) ;;
+        esac
+        if ! "$plugin_host" "${plugin_command[@]}" --help >/dev/null 2>&1; then
+            echo "[FAIL] $plugin_host lacks the required plugin command; upgrade its CLI" >&2
+            exit 1
+        fi
+    done
 fi
 
 prepare_generated_tree() {
@@ -174,6 +216,9 @@ prepare_generated_tree() {
 
         mkdir -p "$GENERATED_SKILLS_DIR/$alias_name"
         cp -R -L "$source_path/." "$GENERATED_SKILLS_DIR/$alias_name/"
+        if [[ "$source_rel_path" == vendor/ponytail/* ]]; then
+            cp "$REPO_ROOT/vendor/ponytail/LICENSE" "$GENERATED_SKILLS_DIR/$alias_name/LICENSE"
+        fi
     done
 }
 
@@ -255,7 +300,6 @@ install_base_file() {
 }
 
 install_codex() {
-    install_central_tree
     install_base_file "$REPO_ROOT/AGENTS.md" "$HOME/.codex/AGENTS.md"
 }
 
@@ -271,6 +315,57 @@ install_claude() {
 install_gemini_base() {
     install_base_file "$REPO_ROOT/GEMINI.md" "$HOME/.gemini/GEMINI.md"
 }
+
+ensure_ponytail_marketplace() {
+    local plugin_host="$1"
+    local registered
+    registered="$("$plugin_host" plugin marketplace list --json | node -e '
+        const fs = require("fs");
+        const data = JSON.parse(fs.readFileSync(0, "utf8"));
+        const entries = Array.isArray(data) ? data : data.marketplaces;
+        if (!Array.isArray(entries)) throw new Error("Invalid marketplace list");
+        process.stdout.write(entries.some(entry => entry.name === "ponytail") ? "yes" : "no");
+    ')"
+    if [ "$registered" = no ]; then
+        "$plugin_host" plugin marketplace add DietrichGebert/ponytail
+    fi
+}
+
+install_ponytail_plugins() {
+    local plugin_host installed
+    for plugin_host in "${PONYTAIL_HOSTS[@]}"; do
+        case "$plugin_host" in
+            codex)
+                ensure_ponytail_marketplace codex
+                codex plugin add ponytail@ponytail
+                echo '[NEXT] In Codex, open /hooks to review and trust Ponytail hooks, then start a new chat.'
+                ;;
+            claude)
+                ensure_ponytail_marketplace claude
+                claude plugin install ponytail@ponytail --scope user
+                echo '[NEXT] Restart Claude Code; Ponytail Band and its local board are included in the plugin.'
+                ;;
+            opencode)
+                opencode plugin add @dietrichgebert/ponytail
+                ;;
+            gemini)
+                installed="$(gemini extensions list --output-format json | node -e '
+                    const fs = require("fs");
+                    const entries = JSON.parse(fs.readFileSync(0, "utf8"));
+                    if (!Array.isArray(entries)) throw new Error("Invalid extension list");
+                    process.stdout.write(entries.some(entry => entry.name === "ponytail") ? "yes" : "no");
+                ')"
+                if [ "$installed" = no ]; then
+                    gemini extensions install https://github.com/DietrichGebert/ponytail --consent
+                fi
+                ;;
+        esac
+        echo "[OK] Ponytail plugin installed for $plugin_host"
+    done
+}
+
+# Claude and OpenCode also need a fresh central tree when installed on their own.
+install_central_tree
 
 case "$TARGET_PLATFORM" in
     codex)
@@ -294,6 +389,10 @@ case "$TARGET_PLATFORM" in
         exit 1
         ;;
 esac
+
+if [ "$INSTALL_PONYTAIL_PLUGIN" = true ]; then
+    install_ponytail_plugins
+fi
 
 cat <<EOF
 

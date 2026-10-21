@@ -5,6 +5,8 @@ Phase 1 uses lightweight smoke checks.
 Run these commands after editing the core skills:
 
 ```bash
+bash tests/smoke/test-install-script.sh
+bash tests/smoke/test-ponytail-plugin.sh
 test -f skills/use-my-skills/SKILL.md
 test -f skills/triage/SKILL.md
 test -f skills/tdd/SKILL.md
@@ -30,5 +32,7 @@ grep -n "If no findings are discovered" skills/review/SKILL.md
 ```
 
 Expected results:
+- installer smoke checks pass; run them sequentially because both rebuild `.generated/skills`
+- native plugin checks use synthetic CLI state and a temporary home, without installing real plugins
 - each `test -f` command exits successfully
 - the `grep` commands return matching lines

@@ -69,6 +69,22 @@ if [ ! -f "$TEST_HOME/.agents/skills/my-skills/impeccable/SKILL.md" ]; then
     exit 1
 fi
 
+for ponytail_skill in ponytail ponytail-review ponytail-audit; do
+    installed_skill="$TEST_HOME/.agents/skills/my-skills/$ponytail_skill"
+    if [ ! -d "$installed_skill" ] || [ -L "$installed_skill" ]; then
+        echo "[FAIL] central my-skills install does not include real files for $ponytail_skill"
+        exit 1
+    fi
+    if ! cmp -s "$REPO_ROOT/vendor/ponytail/skills/$ponytail_skill/SKILL.md" "$installed_skill/SKILL.md"; then
+        echo "[FAIL] installed $ponytail_skill differs from its vendored source"
+        exit 1
+    fi
+    if ! cmp -s "$REPO_ROOT/vendor/ponytail/LICENSE" "$installed_skill/LICENSE"; then
+        echo "[FAIL] installed $ponytail_skill is missing the upstream license"
+        exit 1
+    fi
+done
+
 TASTE_SKILLS=(
     "brandkit"
     "industrial-brutalist-ui"
