@@ -52,6 +52,7 @@ Start with:
 Then branch as needed:
 - use `composition-patterns` for component API and structure decisions
 - use `react-view-transitions` for transition-specific UI work
+- use `fluid-interfaces` for continuous feedback, gesture physics, and interruptible component motion
 - use `web-design-guidelines` for broader web UI quality guidance
 - use `react-native-skills` only for React Native work
 - use `deploy-to-vercel` or `vercel-cli-with-tokens` for Vercel deployment workflow questions

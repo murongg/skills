@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fluid Interfaces"
+  short_description: "Build responsive gestures and continuous UI motion"
+  default_prompt: "Use $fluid-interfaces to improve this interaction, preserve user control during transitions, and verify the result."

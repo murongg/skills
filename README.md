@@ -38,6 +38,7 @@ Phase 2 adds:
 Specialized guidance can also be layered in without bloating the core workflow. This repo vendors frontend guidance, including the Taste Skill suite, and exposes framework guidance through a thin bridge skill:
 
 - `frontend-specialist`
+- [`fluid-interfaces`](skills/fluid-interfaces/SKILL.md) — continuous feedback, interruptible transitions, gesture physics, and component motion, distilled from [设计垂点](https://wxad.design/abc/)
 
 ## Quick Start
 
@@ -193,6 +194,8 @@ Typical flows:
   `ponytail` alongside the normal TDD and verification flow
 - Reviewing a change or auditing a repository:
   `ponytail-review` / `ponytail-audit`
+- Improving interactive motion or gesture behavior:
+  `fluid-interfaces` (for example, `Use $fluid-interfaces to make this drawer respond smoothly when opened and closed rapidly.`)
 
 Bug handling rule:
 
@@ -218,7 +221,7 @@ Superpowers preference rule:
 
 ## Project Layout
 
-- `skills/` - your core workflow skill set
+- `skills/` - core workflow skills and locally maintained specialist guidance
 - `skills/references/` - shared tool mapping and complexity guidance
 - `vendor/` - upstream sources kept for synchronization reference
 - `.generated/` - installer-built clean skill tree used for local installation
